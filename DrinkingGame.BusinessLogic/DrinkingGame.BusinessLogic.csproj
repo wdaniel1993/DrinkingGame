@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DrinkingGame.EntityFramework\DrinkingGame.EntityFramework.csproj" />
+    <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj" />
+  </ItemGroup>
 
 </Project>
