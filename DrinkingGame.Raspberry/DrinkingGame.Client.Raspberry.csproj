@@ -128,9 +128,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj">
-      <Project>{55f6d288-a5a7-417b-856f-d0e6eac988e3}</Project>
-      <Name>DrinkingGame.Shared</Name>
+    <ProjectReference Include="..\DrinkingGame.Client.Core\DrinkingGame.Client.Core.csproj">
+      <Project>{c5d33116-2b03-446d-b3cc-7d95b4b124bd}</Project>
+      <Name>DrinkingGame.Client.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
