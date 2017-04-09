@@ -13,28 +13,15 @@ using Autofac.Integration.SignalR;
 
 namespace DrinkingGame.Alexa
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            var builder = new ContainerBuilder();
+            
 
-            var httpConfiguration = new HttpConfiguration();
-            var hubConfiguration = new HubConfiguration();
+            ConfigureDependency(app);
 
-            WebApiConfig.Register(httpConfiguration);
-
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterHubs(Assembly.GetExecutingAssembly());
-
-            var container = builder.Build();
-            httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
-
-            app.UseAutofacMiddleware(container);
-            app.UseAutofacWebApi(httpConfiguration);
-
-            app.UseWebApi(httpConfiguration);
-            app.MapSignalR(hubConfiguration);
+            
         }
     }
 }

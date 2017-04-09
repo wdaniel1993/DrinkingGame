@@ -6,7 +6,7 @@ namespace DrinkingGame.BusinessLogic.Models
 {
     public class Game
     {
-        public IEnumerable<string> Players { get; set; }
+        public IEnumerable<Player> Players { get; set; }
 
         public IEnumerable<Device> Devices { get; set; }
     }

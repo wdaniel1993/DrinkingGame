@@ -122,8 +122,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Startup.Dependency.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Communicators\DrinkingGameCommunicator.cs" />
+    <Compile Include="Communicators\IDrinkingGameCommunicator.cs" />
     <Compile Include="Hubs\DrinkingGameHub.cs" />
+    <Compile Include="Modules\CommunicatorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
