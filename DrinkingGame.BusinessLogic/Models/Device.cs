@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DrinkingGame.Alexa.Models
+namespace DrinkingGame.BusinessLogic.Models
 {
     public class Device
     {
         public string ConnectionId { get; set; }
         public bool SupportsShouldDrink { get; set; }
-
-        public int Game { get; set; }
     }
 }
