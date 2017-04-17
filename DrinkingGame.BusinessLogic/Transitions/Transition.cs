@@ -4,7 +4,14 @@ using System.Text;
 
 namespace DrinkingGame.BusinessLogic.Transitions
 {
-    public interface ITransition
+    public enum Transition
     {
+        ToGameStarting,
+        ToInitializing,
+        ToRoundStarting,
+        ToAnswerReading,
+        ToLoserDrinking,
+        ToRoundEnding,
+        ToGameEnding
     }
 }

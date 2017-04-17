@@ -5,8 +5,11 @@ using DrinkingGame.BusinessLogic.Transitions;
 
 namespace DrinkingGame.BusinessLogic.States
 {
-    public interface IState
+    public class RoundStarting : IState
     {
-        IObservable<Transition> Enter();
+        public IObservable<Transition> Enter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

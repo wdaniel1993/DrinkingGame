@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DrinkingGame.EntityFramework\DrinkingGame.EntityFramework.csproj" />
     <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj" />
   </ItemGroup>
