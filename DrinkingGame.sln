@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Shared", "Drin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Client.Core", "DrinkingGame.Client.Core\DrinkingGame.Client.Core.csproj", "{C5D33116-2B03-446D-B3CC-7D95B4B124BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Client.Signalr", "DrinkingGame.Client.Signalr\DrinkingGame.Client.Signalr.csproj", "{2636E667-E11A-4954-A952-9BB2A3DD118D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,22 @@ Global
 		{C5D33116-2B03-446D-B3CC-7D95B4B124BD}.Release|x64.Build.0 = Release|x64
 		{C5D33116-2B03-446D-B3CC-7D95B4B124BD}.Release|x86.ActiveCfg = Release|x86
 		{C5D33116-2B03-446D-B3CC-7D95B4B124BD}.Release|x86.Build.0 = Release|x86
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|x64.Build.0 = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Debug|x86.Build.0 = Debug|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|ARM.Build.0 = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|x64.ActiveCfg = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|x64.Build.0 = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2636E667-E11A-4954-A952-9BB2A3DD118D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
