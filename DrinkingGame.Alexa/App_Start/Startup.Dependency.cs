@@ -35,10 +35,9 @@ namespace DrinkingGame.Alexa
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             hubConfiguration.Resolver = new AutofacDependencyResolver(container);
 
-            var newBuilder = new ContainerBuilder();
-            newBuilder.RegisterInstance(hubConfiguration.Resolver.Resolve<IConnectionManager>());
+            builder.RegisterInstance(hubConfiguration.Resolver.Resolve<IConnectionManager>());
 
-            newBuilder.Update(container);
+            container = builder.Build();
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(httpConfiguration);

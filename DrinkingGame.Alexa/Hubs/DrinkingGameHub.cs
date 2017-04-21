@@ -4,14 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using DrinkingGame.BusinessLogic.Models;
+using DrinkingGame.BusinessLogic.Services;
 
 namespace DrinkingGame.Alexa.Hubs
 {
     public class DrinkingGameHub : Hub<IGameClient>, IGameServer
     {
+        private readonly IGameService _gameService;
+
         public void ConnectToGame(int gameNumber, bool supportShouldDrink)
         {
-            throw new NotImplementedException();
+            _gameService.Games.SingleOrDefault(x => x.Id == gameNumber)?.AddDevice(new Device()
+            {
+                ConnectionId = Context.ConnectionId,
+                SupportsShouldDrink = supportShouldDrink
+            });
         }
 
         public void GaveAnswer(string player, int answer)

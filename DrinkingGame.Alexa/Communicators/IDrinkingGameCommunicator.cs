@@ -11,7 +11,8 @@ namespace DrinkingGame.Alexa.Communicators
         void UpdateGameDetails(Game game);
         void NewQuestion(Game game, string question);
         void NewAnswer(Game game, string question, string player);
-        void ShouldDrink(string player);
+        void CorrectAnswer(Game game, string question, string answer);
+        void ShouldDrink(Game game, string player);
         void UpdateScores(Game game);
     }
 }

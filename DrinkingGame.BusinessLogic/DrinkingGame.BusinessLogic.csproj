@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DrinkingGame.EntityFramework\DrinkingGame.EntityFramework.csproj" />
     <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj" />
   </ItemGroup>
 

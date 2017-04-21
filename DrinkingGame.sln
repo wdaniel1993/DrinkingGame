@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.BusinessLogic", "DrinkingGame.BusinessLogic\DrinkingGame.BusinessLogic.csproj", "{759D79B1-9A9C-44D3-A2A5-B45C7E113889}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.EntityFramework", "DrinkingGame.EntityFramework\DrinkingGame.EntityFramework.csproj", "{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Client.UWP", "DrinkingGame.Raspberry\DrinkingGame.Client.UWP.csproj", "{C6E65A13-E82A-4CBB-8949-FD0D44A5EA09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Alexa", "DrinkingGame.Alexa\DrinkingGame.Alexa.csproj", "{5F3CD302-7670-433E-85F8-BCD75263E794}"
@@ -45,22 +43,6 @@ Global
 		{759D79B1-9A9C-44D3-A2A5-B45C7E113889}.Release|x64.Build.0 = Release|Any CPU
 		{759D79B1-9A9C-44D3-A2A5-B45C7E113889}.Release|x86.ActiveCfg = Release|Any CPU
 		{759D79B1-9A9C-44D3-A2A5-B45C7E113889}.Release|x86.Build.0 = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|ARM.Build.0 = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|x64.Build.0 = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Debug|x86.Build.0 = Debug|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|ARM.ActiveCfg = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|ARM.Build.0 = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|x64.ActiveCfg = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|x64.Build.0 = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|x86.ActiveCfg = Release|Any CPU
-		{06131363-E0F4-47EF-AD2D-E9F69A3C28FB}.Release|x86.Build.0 = Release|Any CPU
 		{C6E65A13-E82A-4CBB-8949-FD0D44A5EA09}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{C6E65A13-E82A-4CBB-8949-FD0D44A5EA09}.Debug|ARM.ActiveCfg = Debug|ARM
 		{C6E65A13-E82A-4CBB-8949-FD0D44A5EA09}.Debug|ARM.Build.0 = Debug|ARM

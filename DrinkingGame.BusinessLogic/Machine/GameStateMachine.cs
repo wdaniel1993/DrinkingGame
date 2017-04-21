@@ -23,10 +23,10 @@ namespace DrinkingGame.BusinessLogic.Machine
             _state = new Subject<IState>();
         }
 
-        public IDisposable Initialize()
+        public IDisposable Initialize(IState startState = null)
         {
             IObservable<Transition> transitions = _state
-                .StartWith(_factory.GameStarting())
+                .StartWith(startState ?? _factory.GameStarting())
                 .Select(state => state.Enter())
                 .Switch()
                 .Publish()

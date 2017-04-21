@@ -1,45 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.BusinessLogic.States;
 
 namespace DrinkingGame.BusinessLogic.Machine
 {
     public class StateFactory : IStateFactory
     {
+        private readonly Game _game;
+
+        public StateFactory(Game game)
+        {
+            _game = game;
+        }
+
         public IState GameStarting()
         {
-            throw new NotImplementedException();
+            return new GameStarting();
         }
 
         public IState Initializing()
         {
-            throw new NotImplementedException();
+            return new Initializing();
         }
 
         public IState RoundStarting()
         {
-            throw new NotImplementedException();
+            return new RoundStarting();
         }
 
         public IState AnswerReading()
         {
-            throw new NotImplementedException();
+            return new AnswerReading();
         }
 
         public IState LoserDrinking()
         {
-            throw new NotImplementedException();
+            return new LoserDrinking();
         }
 
         public IState RoundEnding()
         {
-            throw new NotImplementedException();
+            return new RoundEnding();;
         }
 
         public IState GameEnding()
         {
-            throw new NotImplementedException();
+            return new GameEnding();
         }
     }
 }
