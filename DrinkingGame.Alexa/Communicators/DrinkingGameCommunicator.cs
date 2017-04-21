@@ -21,9 +21,9 @@ namespace DrinkingGame.Alexa.Communicators
 
         private IHubContext<IGameClient> Hub => _connectionManager.GetHubContext<DrinkingGameHub,IGameClient>();
 
-        public void NewAnswer(Game game, string question, string player)
+        public void NewAnswer(Game game, string question, string player, int answer)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).NewAnswer(question,player);
+            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).NewAnswer(question, player, answer);
         }
 
         public void NewQuestion(Game game, string question)
@@ -31,7 +31,7 @@ namespace DrinkingGame.Alexa.Communicators
             Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).NewQuestion(question);
         }
 
-        public void CorrectAnswer(Game game, string question, string answer)
+        public void CorrectAnswer(Game game, string question, int answer)
         {
             Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).CorrectAnswer(question, answer);
         }

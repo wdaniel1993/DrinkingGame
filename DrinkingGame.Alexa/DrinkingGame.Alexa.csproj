@@ -146,6 +146,8 @@
     <Compile Include="Hubs\DrinkingGameHub.cs" />
     <Compile Include="Modules\CommunicatorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GameService.cs" />
+    <Compile Include="Services\IGameService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

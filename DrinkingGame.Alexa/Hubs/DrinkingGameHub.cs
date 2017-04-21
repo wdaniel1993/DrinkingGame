@@ -13,6 +13,11 @@ namespace DrinkingGame.Alexa.Hubs
     {
         private readonly IGameService _gameService;
 
+        public DrinkingGameHub(IGameService gameService)
+        {
+            _gameService = gameService;
+        }
+        
         public void ConnectToGame(int gameNumber, bool supportShouldDrink)
         {
             _gameService.Games.SingleOrDefault(x => x.Id == gameNumber)?.AddDevice(new Device()
