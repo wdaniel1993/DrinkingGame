@@ -6,8 +6,8 @@ namespace DrinkingGame.BusinessLogic.Models
 {
     public class Puzzle
     {
-        public string Question { get;  }
+        public string Question { get; set; }
 
-        public int Answer { get; }
+        public int Answer { get; set; }
     }
 }
