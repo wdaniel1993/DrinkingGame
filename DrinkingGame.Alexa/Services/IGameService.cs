@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DrinkingGame.Alexa.Communicators;
+﻿using System.Collections.Generic;
 using DrinkingGame.BusinessLogic.Models;
 
-namespace DrinkingGame.BusinessLogic.Services
+namespace DrinkingGame.Alexa.Services
 {
     public interface IGameService
     {

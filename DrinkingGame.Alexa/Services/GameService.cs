@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DrinkingGame.BusinessLogic.Models;
-using DrinkingGame.BusinessLogic.Services;
 
 namespace DrinkingGame.Alexa.Services
 {
