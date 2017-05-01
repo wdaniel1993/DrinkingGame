@@ -22,32 +22,32 @@ namespace DrinkingGame.BusinessLogic.Machine
 
         public IState Initializing()
         {
-            return new Initializing();
+            return new Initializing(_game);
         }
 
         public IState RoundStarting()
         {
-            return new RoundStarting();
+            return new RoundStarting(_game);
         }
 
         public IState AnswerReading()
         {
-            return new AnswerReading();
+            return new AnswerReading(_game);
         }
 
         public IState LoserDrinking()
         {
-            return new LoserDrinking();
+            return new LoserDrinking(_game);
         }
 
         public IState RoundEnding()
         {
-            return new RoundEnding();;
+            return new RoundEnding(_game);;
         }
 
         public IState GameEnding()
         {
-            return new GameEnding();
+            return new GameEnding(_game);
         }
     }
 }

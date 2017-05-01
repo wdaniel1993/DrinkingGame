@@ -12,7 +12,7 @@ namespace DrinkingGame.BusinessLogic.Machine
     public class GameStateMachine
     {
         private readonly IStateFactory _factory;
-        private readonly Subject<IState> _state;
+        private readonly ISubject<IState> _state;
 
         public IObservable<IState> State => _state.AsObservable();
 
@@ -20,13 +20,12 @@ namespace DrinkingGame.BusinessLogic.Machine
         {
             _factory = factory;
 
-            _state = new Subject<IState>();
+            _state = new BehaviorSubject<IState>(_factory.GameStarting());
         }
 
-        public IDisposable Initialize(IState startState = null)
+        public IDisposable Initialize()
         {
             IObservable<Transition> transitions = _state
-                .StartWith(startState ?? _factory.GameStarting())
                 .Select(state => state.Enter())
                 .Switch()
                 .Publish()
