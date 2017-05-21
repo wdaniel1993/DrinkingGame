@@ -20,6 +20,10 @@ namespace DrinkingGame.Client.Console
         {
             var hubConnection = new HubConnection(@"http://localhost:62562/");
             var hubProxy = new DrinkingGameHubProxy(hubConnection, "DrinkingGameHub");
+
+            hubConnection.TraceLevel = TraceLevels.All;
+            hubConnection.TraceWriter = System.Console.Out;
+
             await hubConnection.Start();
             
 

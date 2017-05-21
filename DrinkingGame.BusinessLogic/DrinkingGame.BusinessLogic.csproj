@@ -7,16 +7,11 @@
   <ItemGroup>
     <PackageReference Include="System.Interactive" Version="3.1.1" />
     <PackageReference Include="System.Reactive" Version="3.1.1" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Reflection.TypeExtensions">
-      <HintPath>..\..\..\..\Users\Daniel\.nuget\packages\System.Reflection.TypeExtensions\4.3.0\ref\netstandard1.3\System.Reflection.TypeExtensions.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

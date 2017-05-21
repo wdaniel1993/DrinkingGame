@@ -27,6 +27,7 @@ namespace DrinkingGame.Alexa
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterHubs(Assembly.GetExecutingAssembly());
 
+            builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommunicatorModule>();
 
             builder.Register(_ => hubConfiguration.Resolver.Resolve<IConnectionManager>());

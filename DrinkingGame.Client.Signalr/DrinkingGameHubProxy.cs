@@ -67,17 +67,17 @@ namespace DrinkingGame.Client.Signalr
 
         public async Task ConnectToGame(ConnectToGameDto dto)
         {
-            await HubProxy.Invoke<ConnectToGameDto>(nameof(IGameServer.ConnectToGame),dto);
+            await HubProxy.Invoke(nameof(IGameServer.ConnectToGame),dto);
         }
 
         public async Task PlayerDrank(PlayerDrankDto dto)
         {
-            await HubProxy.Invoke<PlayerDrankDto>(nameof(IGameServer.PlayerDrank), dto);
+            await HubProxy.Invoke(nameof(IGameServer.PlayerDrank), dto);
         }
 
         public async Task GaveAnswer(GaveAnswerDto dto)
         {
-            await HubProxy.Invoke<GaveAnswerDto>(nameof(IGameServer.GaveAnswer), dto);
+            await HubProxy.Invoke(nameof(IGameServer.GaveAnswer), dto);
         }
     }
 }
