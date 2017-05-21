@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using DrinkingGame.Alexa.Services;
 using DrinkingGame.BusinessLogic.Models;
+using DrinkingGame.Shared.DataTransfer;
 
 namespace DrinkingGame.Alexa.Hubs
 {
@@ -19,44 +20,44 @@ namespace DrinkingGame.Alexa.Hubs
             _gameService = gameService;
         }
 
-        public async Task ConnectToGame(int gameNumber, bool supportShouldDrink)
+        public async Task ConnectToGame(ConnectToGameDto dto)
         {
-            var game = _gameService.Games.SingleOrDefault(x => x.Id == gameNumber);
+            var game = _gameService.Games.SingleOrDefault(x => x.Id == dto.GameNumber);
             if (game != null)
             {
                 await game.AddDevice(new Device()
                 {
                     ConnectionId = Context.ConnectionId,
-                    SupportsShouldDrink = supportShouldDrink
+                    SupportsShouldDrink = dto.SupportShouldDrink
                 });
             }
         }
 
-        public async Task GaveAnswer(string player, int answer)
+        public async Task GaveAnswer(GaveAnswerDto dto)
         {
             var game = _gameService.Games.SingleOrDefault(x => x.Devices.Select(device => device.ConnectionId)
                 .Contains(Context.ConnectionId));
 
-            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == player);
+            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == dto.Player);
 
             if (game != null && gamePlayer != null)
             {
                 await game.AddGuess(
                     new Guess()
                     {
-                        Estimate = answer,
+                        Estimate = dto.Answer,
                         Player = gamePlayer
                     }
                 );
             }
         }
 
-        public async Task PlayerDrank(string player)
+        public async Task PlayerDrank(PlayerDrankDto dto)
         {
             var game = _gameService.Games.SingleOrDefault(x => x.Devices.Select(device => device.ConnectionId)
                 .Contains(Context.ConnectionId));
 
-            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == player);
+            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == dto.Player);
 
             if (game != null && gamePlayer != null)
             {

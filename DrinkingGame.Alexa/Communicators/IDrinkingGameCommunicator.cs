@@ -12,7 +12,7 @@ namespace DrinkingGame.Alexa.Communicators
         void NewQuestion(Game game, string question);
         void NewAnswer(Game game, string question, string player, int answer);
         void CorrectAnswer(Game game, string question, int answer);
-        void ShouldDrink(Game game, string player);
+        void ShouldDrink(Game game, IEnumerable<string> players);
         void UpdateScores(Game game);
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DrinkingGame.Shared.DataTransfer;
 
 namespace DrinkingGame.Shared.Interfaces
 {
     public interface IGameClient
     {
-        void UpdateGameDetails(IEnumerable<string> players);
-        void NewQuestion(string question);
-        void NewAnswer(string question, string player, int answer);
-        void CorrectAnswer(string question, int answer);
-        void ShouldDrink(string player);
-        void UpdateScores(Dictionary<string,int> scores);
+        void UpdateGameDetails(UpdateGameDetailsDto dto);
+        void NewRound(NewRoundDto dto);
+        void NewAnswer(NewAnswerDto dto);
+        void CorrectAnswer(CorrectAnswerDto dto);
+        void ShouldDrink(ShouldDrinkDto dto);
+        void UpdateScores(UpdateScoresDto dto);
     }
 }
