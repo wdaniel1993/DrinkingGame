@@ -25,7 +25,8 @@ namespace DrinkingGame.BusinessLogic.States
                 {
                     if (_game.Devices.Any(x => x.SupportsShouldDrink))
                     {
-                        return _game.CurrentRound.DrinkTaken.Select(_ => Transition.ToRoundEnding).Subscribe(observer);
+                        return _game.CurrentRound.DrinkTaken.Subscribe(_ => { }, _ => { },
+                            () => observer.OnNext(Transition.ToRoundEnding));
                     }
                     else
                     {

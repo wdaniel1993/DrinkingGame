@@ -3,6 +3,7 @@ using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using DrinkingGame.Alexa.Services;
 using DrinkingGame.BusinessLogic.Models;
@@ -17,24 +18,50 @@ namespace DrinkingGame.Alexa.Hubs
         {
             _gameService = gameService;
         }
-        
-        public void ConnectToGame(int gameNumber, bool supportShouldDrink)
+
+        public async Task ConnectToGame(int gameNumber, bool supportShouldDrink)
         {
-            _gameService.Games.SingleOrDefault(x => x.Id == gameNumber)?.AddDevice(new Device()
+            var game = _gameService.Games.SingleOrDefault(x => x.Id == gameNumber);
+            if (game != null)
             {
-                ConnectionId = Context.ConnectionId,
-                SupportsShouldDrink = supportShouldDrink
-            });
+                await game.AddDevice(new Device()
+                {
+                    ConnectionId = Context.ConnectionId,
+                    SupportsShouldDrink = supportShouldDrink
+                });
+            }
         }
 
-        public void GaveAnswer(string player, int answer)
+        public async Task GaveAnswer(string player, int answer)
         {
-            throw new NotImplementedException();
+            var game = _gameService.Games.SingleOrDefault(x => x.Devices.Select(device => device.ConnectionId)
+                .Contains(Context.ConnectionId));
+
+            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == player);
+
+            if (game != null && gamePlayer != null)
+            {
+                await game.AddGuess(
+                    new Guess()
+                    {
+                        Estimate = answer,
+                        Player = gamePlayer
+                    }
+                );
+            }
         }
 
-        public void PlayerDrank(string player)
+        public async Task PlayerDrank(string player)
         {
-            throw new NotImplementedException();
+            var game = _gameService.Games.SingleOrDefault(x => x.Devices.Select(device => device.ConnectionId)
+                .Contains(Context.ConnectionId));
+
+            var gamePlayer = game?.Players.SingleOrDefault(x => x.Name == player);
+
+            if (game != null && gamePlayer != null)
+            {
+                await game.PlayerDrank(gamePlayer);
+            }
         }
     }
 }

@@ -78,8 +78,12 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public async Task AddGuess(Guess guess)
         {
-            await CheckState(typeof(AnswerReading));
             await CurrentRound.AddGuess(guess);
+        }
+
+        public async Task PlayerDrank(Player player)
+        {
+            await CurrentRound.PlayerDrank(player);
         }
 
         public async Task AddRound(Round round)
