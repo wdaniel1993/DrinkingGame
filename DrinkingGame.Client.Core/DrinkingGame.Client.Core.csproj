@@ -111,6 +111,10 @@
     <EmbeddedResource Include="Properties\DrinkingGame.Client.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DrinkingGame.Client.Signalr\DrinkingGame.Client.Signalr.csproj">
+      <Project>{2636e667-e11a-4954-a952-9bb2a3dd118d}</Project>
+      <Name>DrinkingGame.Client.Signalr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DrinkingGame.Shared\DrinkingGame.Shared.csproj">
       <Project>{55f6d288-a5a7-417b-856f-d0e6eac988e3}</Project>
       <Name>DrinkingGame.Shared</Name>
