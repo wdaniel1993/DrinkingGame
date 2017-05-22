@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using DrinkingGame.BusinessLogic.Models;
 
-namespace DrinkingGame.Alexa.Services
+namespace DrinkingGame.WebService.Services
 {
     public class GameService : IGameService
     {

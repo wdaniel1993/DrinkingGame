@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Autofac;
-using DrinkingGame.Alexa.Communicators;
-using DrinkingGame.Alexa.Services;
+using DrinkingGame.WebService.Communicators;
+using DrinkingGame.WebService.Services;
 
-namespace DrinkingGame.Alexa.Modules
+namespace DrinkingGame.WebService.Modules
 {
     public class ServiceModule : Module
     {

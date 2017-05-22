@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.SignalR;
 using Autofac.Integration.WebApi;
-using DrinkingGame.Alexa.Modules;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using Owin;
@@ -11,8 +10,9 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using DrinkingGame.WebService.Modules;
 
-namespace DrinkingGame.Alexa
+namespace DrinkingGame.WebService
 {
     public partial class Startup
     {

@@ -9,9 +9,9 @@ using System.Reflection;
 using Microsoft.AspNet.SignalR;
 using Autofac.Integration.SignalR;
 
-[assembly: OwinStartup(typeof(DrinkingGame.Alexa.Startup))]
+[assembly: OwinStartup(typeof(DrinkingGame.WebService.Startup))]
 
-namespace DrinkingGame.Alexa
+namespace DrinkingGame.WebService
 {
     public partial class Startup
     {

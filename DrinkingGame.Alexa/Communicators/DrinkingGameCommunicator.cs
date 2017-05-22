@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DrinkingGame.Alexa.Hubs;
 using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.Shared.DataTransfer;
 using DrinkingGame.Shared.Interfaces;
+using DrinkingGame.WebService.Hubs;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 
-namespace DrinkingGame.Alexa.Communicators
+namespace DrinkingGame.WebService.Communicators
 {
     public class DrinkingGameCommunicator : IDrinkingGameCommunicator
     {

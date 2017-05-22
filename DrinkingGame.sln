@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.BusinessLogic"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Client.UWP", "DrinkingGame.Raspberry\DrinkingGame.Client.UWP.csproj", "{C6E65A13-E82A-4CBB-8949-FD0D44A5EA09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Alexa", "DrinkingGame.Alexa\DrinkingGame.Alexa.csproj", "{5F3CD302-7670-433E-85F8-BCD75263E794}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.WebService", "DrinkingGame.Alexa\DrinkingGame.WebService.csproj", "{5F3CD302-7670-433E-85F8-BCD75263E794}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkingGame.Shared", "DrinkingGame.Shared\DrinkingGame.Shared.csproj", "{55F6D288-A5A7-417B-856F-D0E6EAC988E3}"
 EndProject

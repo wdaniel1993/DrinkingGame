@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using DrinkingGame.BusinessLogic.Models;
 
-namespace DrinkingGame.Alexa.Services
+namespace DrinkingGame.WebService.Services
 {
     public interface IGameService
     {
