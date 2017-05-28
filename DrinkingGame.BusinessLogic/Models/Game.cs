@@ -32,7 +32,7 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public GameStateMachine Machine { get; }
 
-        public Task<IState> State => Machine.State.FirstAsync().ToTask();
+        public IObservable<IState> State => Machine.State.FirstAsync();
 
         public Game(int id)
         {
