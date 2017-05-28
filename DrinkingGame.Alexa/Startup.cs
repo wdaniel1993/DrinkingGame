@@ -17,11 +17,7 @@ namespace DrinkingGame.WebService
     {
         public void Configuration(IAppBuilder app)
         {
-            
-
             ConfigureDependency(app);
-
-            
         }
     }
 }

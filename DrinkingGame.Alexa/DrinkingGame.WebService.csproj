@@ -170,6 +170,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Communicators\DrinkingGameCommunicator.cs" />
     <Compile Include="Communicators\IDrinkingGameCommunicator.cs" />
+    <Compile Include="Handler\GameHandler.cs" />
+    <Compile Include="Handler\IGameHandler.cs" />
     <Compile Include="Hubs\DrinkingGameHub.cs" />
     <Compile Include="Modules\CommunicatorModule.cs" />
     <Compile Include="Modules\ServiceModule.cs" />

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using DrinkingGame.WebService.Handler;
 using DrinkingGame.WebService.Modules;
 
 namespace DrinkingGame.WebService
@@ -42,6 +43,8 @@ namespace DrinkingGame.WebService
 
             app.UseWebApi(httpConfiguration);
             app.MapSignalR(hubConfiguration);
+
+            container.Resolve<IGameHandler>().StartHandler();
         }
     }
 }

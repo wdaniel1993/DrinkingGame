@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DrinkingGame.WebService.Communicators;
+using DrinkingGame.WebService.Handler;
 
 namespace DrinkingGame.WebService.Modules
 {
@@ -13,6 +14,7 @@ namespace DrinkingGame.WebService.Modules
         {
             
             builder.RegisterType<DrinkingGameCommunicator>().As<IDrinkingGameCommunicator>().InstancePerLifetimeScope();
+            builder.RegisterType<GameHandler>().As<IGameHandler>();
         }
     }
 }

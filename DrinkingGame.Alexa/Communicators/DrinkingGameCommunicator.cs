@@ -6,6 +6,7 @@ using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.Shared.DataTransfer;
 using DrinkingGame.Shared.Interfaces;
 using DrinkingGame.WebService.Hubs;
+using DrinkingGame.WebService.Services;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 
