@@ -31,7 +31,7 @@ namespace DrinkingGame.WebService
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommunicatorModule>();
 
-            builder.Register(_ => GlobalHost.DependencyResolver.Resolve<IConnectionManager>());
+            builder.Register(_ => GlobalHost.DependencyResolver.Resolve<IConnectionManager>()).ExternallyOwned();
 
             var container = builder.Build();
 
