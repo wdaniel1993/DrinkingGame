@@ -170,6 +170,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Communicators\DrinkingGameCommunicator.cs" />
     <Compile Include="Communicators\IDrinkingGameCommunicator.cs" />
+    <Compile Include="Controllers\Cortana\MessagesController.cs" />
+    <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Handler\GameHandler.cs" />
     <Compile Include="Handler\IGameHandler.cs" />
     <Compile Include="Hubs\DrinkingGameHub.cs" />
@@ -191,7 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Alexa\" />
+    <Folder Include="Controllers\Web\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

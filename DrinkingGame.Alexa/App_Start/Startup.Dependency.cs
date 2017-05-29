@@ -31,7 +31,7 @@ namespace DrinkingGame.WebService
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommunicatorModule>();
 
-            builder.Register(_ => hubConfiguration.Resolver.Resolve<IConnectionManager>());
+            builder.Register(_ => GlobalHost.DependencyResolver.Resolve<IConnectionManager>());
 
             var container = builder.Build();
 
@@ -43,8 +43,6 @@ namespace DrinkingGame.WebService
 
             app.UseWebApi(httpConfiguration);
             app.MapSignalR(hubConfiguration);
-
-            container.Resolve<IGameHandler>().StartHandler();
         }
     }
 }

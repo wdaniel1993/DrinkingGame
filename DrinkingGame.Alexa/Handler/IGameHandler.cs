@@ -9,5 +9,7 @@ namespace DrinkingGame.WebService.Handler
     public interface IGameHandler : IDisposable
     {
         void StartHandler();
+
+        bool IsActive { get; }
     }
 }

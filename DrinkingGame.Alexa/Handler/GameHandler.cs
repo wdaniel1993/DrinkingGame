@@ -13,6 +13,9 @@ namespace DrinkingGame.WebService.Handler
         private readonly IGameService _gameService;
         private readonly IDrinkingGameCommunicator _gameCommunicator;
         private IDisposable _disposable;
+        private bool _isActive;
+
+        public bool IsActive => _isActive;
 
         public GameHandler(IGameService gameService, IDrinkingGameCommunicator gameCommunicator)
         {
@@ -22,6 +25,13 @@ namespace DrinkingGame.WebService.Handler
 
         public void StartHandler()
         {
+            if (_isActive)
+            {
+                return;
+            }
+
+            _isActive = true;
+
             var disposable = new CompositeDisposable();
 
             disposable.Add(_gameService.GameAdded.Subscribe(
