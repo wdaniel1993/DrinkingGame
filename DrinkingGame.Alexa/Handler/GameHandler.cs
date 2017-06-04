@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Web;
+using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.WebService.Communicators;
 using DrinkingGame.WebService.Services;
 
@@ -21,6 +22,7 @@ namespace DrinkingGame.WebService.Handler
         {
             _gameService = gameService;
             _gameCommunicator = gameCommunicator;
+            
         }
 
         public void Dispose()
@@ -28,7 +30,7 @@ namespace DrinkingGame.WebService.Handler
             _disposable.Dispose();
         }
 
-        public void Start()
+        public async void Start()
         {
             if (_isActive)
             {

@@ -38,6 +38,8 @@ namespace DrinkingGame.BusinessLogic.Models
         {
             Id = id;
             Machine = new GameStateMachine(new StateFactory(this));
+
+            Machine.Initialize();
         }
 
         public IObservable<Player> PlayerAdded => _playerAdded.AsObservable();
@@ -57,7 +59,7 @@ namespace DrinkingGame.BusinessLogic.Models
             _playerAdded.OnCompleted();
         }
 
-        public async Task ComppleteGame()
+        public async Task CompleteGame()
         {
             await CheckState(typeof(RoundEnding));
             _roundAdded.OnCompleted();

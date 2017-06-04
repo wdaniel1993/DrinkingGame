@@ -4,22 +4,25 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Web;
+using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.WebService.Services;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Internals.Fibers;
 using Microsoft.Bot.Builder.Luis;
+using Microsoft.Bot.Builder.Luis.Models;
 using Microsoft.Bot.Connector;
 
 namespace DrinkingGame.WebService.Dialogs
 {
-    //[LuisModel("82ff336f-f639-4866-b416-7761d4a8f126", "b0c3c0efe8444b97adf92cce9e31997c")]
+
     [Serializable]
-    public class GameDialog : IDialog<Object>
+    public class GameDialog : LuisDialog<Object>
     {
         [NonSerialized]
         private IGameService _gameService;
 
-        public GameDialog()
+
+        public GameDialog(ILuisService luisService): base(luisService)
         {
             ResolveDependencies();   
         }
@@ -35,27 +38,78 @@ namespace DrinkingGame.WebService.Dialogs
             _gameService = DependencyManager.Current.Resolve<IGameService>();
         }
 
-        public Task StartAsync(IDialogContext context)
+        [LuisIntent("")]
+        [LuisIntent("None")]
+        public async Task None(IDialogContext context, LuisResult result)
         {
-            context.Wait(MessageReceivedAsync);
-
-            return Task.CompletedTask;
+            string message = $"Sorry I did not understand: " + string.Join(", ", result.Query);
+            await context.PostAsync(message);
+            context.Wait(MessageReceived);
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        [LuisIntent("poldi.intent.game.start")]
+        public async Task StartGame(IDialogContext context, LuisResult result)
         {
-            var activity = await result as Activity;
+            var gameId = _gameService.StartNewGame();
+            context.UserData.SetValue("gameId", gameId);
+            string message = $"Started new game with ID {gameId}. Please add users.";
+            await context.PostAsync(message);
+            context.Wait(MessageReceived);
+        }
 
-            // calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
-
-            // return our reply to the user
-            var reply = $"You sent {activity.Text} which was {length} characters";
-            await context.SayAsync(reply,reply,new MessageOptions
+        [LuisIntent("poldi.intent.game.addplayer")]
+        public async Task AddPlayer(IDialogContext context, LuisResult result)
+        {
+            var playerName = result.Entities.FirstOrDefault(x => x.Type == "playerName")?.Entity;
+            if (!string.IsNullOrEmpty(playerName))
             {
-                InputHint = InputHints.ExpectingInput
-            });
-            context.Wait(MessageReceivedAsync);
+                string message = $"Added player: {playerName}";
+
+                var game = CurrentGame(context);
+                if (game != null)
+                {
+                    await game
+                        .AddPlayer(new Player
+                        {
+                            Name = playerName
+                        });
+
+                    await context.PostAsync(message);
+                }
+                else
+                {
+                    await context.PostAsync("Start a game first.");
+                }
+            }
+            else
+            {
+                await context.PostAsync("Could not get name.");
+            }
+            context.Wait(MessageReceived);
+        }
+
+        [LuisIntent("poldi.intent.game.finishplayers")]
+        public async Task FinishedAddingPlayers(IDialogContext context, LuisResult result)
+        {
+
+            var game = CurrentGame(context);
+            if (game != null)
+            {
+                await game.CompleteAddingdPlayers();
+                await context.PostAsync($"Completed adding players.");
+            }
+            else
+            {
+                await context.PostAsync("Start a game first.");
+            }
+            context.Wait(MessageReceived);
+        }
+
+        private Game CurrentGame(IDialogContext context)
+        {
+            int gameId;
+            context.UserData.TryGetValue<int>("gameId",out gameId);
+            return _gameService.Games.FirstOrDefault(x => x.Id == gameId);
         }
     }
 }

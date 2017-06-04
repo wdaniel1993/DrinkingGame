@@ -19,7 +19,7 @@ namespace DrinkingGame.BusinessLogic.States
         public IObservable<Transition> Enter()
         {
             return Observable.Create<Transition>(
-                observer => _game.PlayerAdded.Subscribe(null,() => observer.OnNext(Transition.ToGameStarting))
+                observer => _game.PlayerAdded.Subscribe(_ => { }, _ => { }, () => observer.OnNext(Transition.ToGameStarting))
             );
         }
     }
