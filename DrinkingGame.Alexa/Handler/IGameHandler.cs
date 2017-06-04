@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace DrinkingGame.WebService.Handler
 {
-    public interface IGameHandler : IDisposable
+    public interface IGameHandler : IDisposable, IStartable
     {
-        void StartHandler();
-
         bool IsActive { get; }
     }
 }

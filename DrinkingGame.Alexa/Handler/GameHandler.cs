@@ -23,7 +23,12 @@ namespace DrinkingGame.WebService.Handler
             _gameCommunicator = gameCommunicator;
         }
 
-        public void StartHandler()
+        public void Dispose()
+        {
+            _disposable.Dispose();
+        }
+
+        public void Start()
         {
             if (_isActive)
             {
@@ -58,11 +63,6 @@ namespace DrinkingGame.WebService.Handler
             ));
 
             _disposable = disposable;
-        }
-
-        public void Dispose()
-        {
-            _disposable.Dispose();
         }
     }
 }

@@ -12,9 +12,8 @@ namespace DrinkingGame.WebService.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            
             builder.RegisterType<DrinkingGameCommunicator>().As<IDrinkingGameCommunicator>().InstancePerLifetimeScope();
-            builder.RegisterType<GameHandler>().As<IGameHandler>();
+            builder.RegisterType<GameHandler>().As<IStartable>().SingleInstance();
         }
     }
 }

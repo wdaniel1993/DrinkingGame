@@ -16,9 +16,7 @@ namespace DrinkingGame.WebService.Controllers.Cortana
     public class MessagesController : ApiController
     {
 
-        public MessagesController(IGameHandler gameHandler)
-        {
-            gameHandler.StartHandler();
+        public MessagesController() { 
         }
 
 
