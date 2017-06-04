@@ -26,8 +26,11 @@ namespace DrinkingGame.WebService.Dialogs
             int length = (activity.Text ?? string.Empty).Length;
 
             // return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
-
+            var reply = $"You sent {activity.Text} which was {length} characters";
+            await context.SayAsync(reply,reply,new MessageOptions
+            {
+                InputHint = InputHints.AcceptingInput
+            });
             context.Wait(MessageReceivedAsync);
         }
     }

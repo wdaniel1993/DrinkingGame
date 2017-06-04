@@ -13,11 +13,12 @@ using Microsoft.Bot.Connector;
 namespace DrinkingGame.WebService.Controllers.Cortana
 {
     [BotAuthentication]
-    public class MessagesController : ApiController
+    public class CortanaController : ApiController
     {
 
-        public MessagesController() { 
+        public CortanaController() { 
         }
+
 
 
         /// <summary>
