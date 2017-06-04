@@ -10,7 +10,9 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using DrinkingGame.Shared.Interfaces;
 using DrinkingGame.WebService.Handler;
+using DrinkingGame.WebService.Hubs;
 using DrinkingGame.WebService.Modules;
 
 namespace DrinkingGame.WebService
@@ -31,12 +33,13 @@ namespace DrinkingGame.WebService
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule<CommunicatorModule>();
 
-            builder.Register(_ => GlobalHost.DependencyResolver.Resolve<IConnectionManager>()).ExternallyOwned();
+            builder.Register(ctx => hubConfiguration.Resolver.Resolve<IConnectionManager>().GetHubContext<DrinkingGameHub, IGameClient>())
+                .ExternallyOwned();
 
             var container = builder.Build();
 
             DependencyManager.Current.Container = container;
-
+            
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             hubConfiguration.Resolver = new AutofacDependencyResolver(container);
 

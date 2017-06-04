@@ -6,6 +6,6 @@ namespace DrinkingGame.Shared.DataTransfer
 {
     public class UpdateGameDetailsDto
     {
-        public IEnumerable<string> Players { get; set; }
+        public List<string> Players { get; set; }
     }
 }

@@ -6,6 +6,6 @@ namespace DrinkingGame.Shared.DataTransfer
 {
     public class ShouldDrinkDto
     {
-        public IEnumerable<string> Players;
+        public List<string> Players;
     }
 }

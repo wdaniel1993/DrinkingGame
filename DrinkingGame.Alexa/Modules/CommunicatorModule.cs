@@ -20,7 +20,7 @@ namespace DrinkingGame.WebService.Modules
 
             builder.RegisterType<LuisService>().As<ILuisService>().SingleInstance();
             builder.RegisterType<DrinkingGameCommunicator>().As<IDrinkingGameCommunicator>().InstancePerLifetimeScope();
-            builder.RegisterType<GameHandler>().As<IStartable>().SingleInstance();
+            builder.RegisterType<GameHandler>().As<IGameHandler>().SingleInstance();
             builder.RegisterType<GameDialog>().AsSelf().InstancePerDependency();
         }
     }

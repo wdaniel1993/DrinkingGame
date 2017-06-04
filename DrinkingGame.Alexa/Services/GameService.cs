@@ -18,7 +18,9 @@ namespace DrinkingGame.WebService.Services
         public int StartNewGame()
         {
             var nextId = _games.Select(x => x.Id).DefaultIfEmpty().Max() + 1;
-            _games.Add(new Game(nextId));
+            var game = new Game(nextId);
+            _games.Add(game);
+            _gameAdded.OnNext(game);
             return nextId;
         }
     }

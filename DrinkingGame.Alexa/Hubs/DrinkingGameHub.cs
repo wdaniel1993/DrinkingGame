@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Autofac;
 using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.Shared.DataTransfer;
+using DrinkingGame.WebService.Handler;
 using DrinkingGame.WebService.Services;
 
 namespace DrinkingGame.WebService.Hubs
@@ -15,9 +17,10 @@ namespace DrinkingGame.WebService.Hubs
     {
         private readonly IGameService _gameService;
 
-        public DrinkingGameHub(IGameService gameService)
+        public DrinkingGameHub(IGameService gameService, IGameHandler handler)
         {
             _gameService = gameService;
+            handler.Start();
         }
 
         public async Task ConnectToGame(ConnectToGameDto dto)

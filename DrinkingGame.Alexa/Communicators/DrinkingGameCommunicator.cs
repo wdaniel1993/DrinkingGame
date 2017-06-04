@@ -14,18 +14,18 @@ namespace DrinkingGame.WebService.Communicators
 {
     public class DrinkingGameCommunicator : IDrinkingGameCommunicator
     {
-        private readonly IConnectionManager _connectionManager;
+        private readonly IHubContext<IGameClient> _hub;
 
-        public DrinkingGameCommunicator(IConnectionManager connectionManager)
+        public DrinkingGameCommunicator(IHubContext<IGameClient> hub)
         {
-            _connectionManager = connectionManager;
+            _hub = hub;
         }
 
-        private IHubContext<IGameClient> Hub => _connectionManager.GetHubContext<DrinkingGameHub,IGameClient>();
+        public IHubContext<IGameClient> Hub => _hub;
 
         public void NewAnswer(Game game, string question, string player, int answer)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).NewAnswer(new NewAnswerDto {
+            Hub.Clients.Clients(game.Devices.Select(x => x.ConnectionId).ToList()).NewAnswer(new NewAnswerDto {
                 Question = question,
                 Player = player,
                 Answer = answer
@@ -34,14 +34,14 @@ namespace DrinkingGame.WebService.Communicators
 
         public void NewQuestion(Game game, string question)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).NewRound(new NewRoundDto {
+            Hub.Clients.Clients(game.Devices.Select(x => x.ConnectionId).ToList()).NewRound(new NewRoundDto {
                 Question = question
             });
         }
 
         public void CorrectAnswer(Game game, string question, int answer)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).CorrectAnswer(new CorrectAnswerDto {
+            Hub.Clients.Clients(game.Devices.Select(x => x.ConnectionId).ToList()).CorrectAnswer(new CorrectAnswerDto {
                 Question = question,
                 Answer = answer
             });
@@ -49,22 +49,22 @@ namespace DrinkingGame.WebService.Communicators
         
         public void ShouldDrink(Game game, IEnumerable<string> players)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).ShouldDrink(new ShouldDrinkDto() {
-                Players = players
+            Hub.Clients.Clients(game.Devices.Select(x => x.ConnectionId).ToList()).ShouldDrink(new ShouldDrinkDto() {
+                Players = players.ToList()
             });
         }
 
         public void UpdateGameDetails(Game game)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).UpdateGameDetails(new UpdateGameDetailsDto
+            Hub.Clients.All.UpdateGameDetails(new UpdateGameDetailsDto
             {
-                Players = game.Players.Select(x => x.Name)
+                Players = game.Players.Select(x => x.Name).ToList()
             });
         }
 
         public void UpdateScores(Game game)
         {
-            Hub.Clients.Users(game.Devices.Select(x => x.ConnectionId).ToList()).UpdateScores(new UpdateScoresDto {
+            Hub.Clients.Clients(game.Devices.Select(x => x.ConnectionId).ToList()).UpdateScores(new UpdateScoresDto {
                 Scores = game.Players.ToDictionary(x => x.Name, y => y.Score)
             });
         }

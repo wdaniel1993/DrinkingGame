@@ -62,7 +62,7 @@ namespace DrinkingGame.Client.Signalr
 
         private static IDisposable ConnectToEvent<T>(IHubProxy hubProxy,string methodName, Subject<T> subject)
         {
-            return hubProxy.On<T>(methodName, subject.OnNext);
+            return hubProxy.On<T>(ConvertToCamelCase(methodName), subject.OnNext);
         }
 
         public async Task ConnectToGame(ConnectToGameDto dto)
@@ -79,5 +79,23 @@ namespace DrinkingGame.Client.Signalr
         {
             await HubProxy.Invoke(nameof(IGameServer.GaveAnswer), dto);
         }
+
+        private static string ConvertToCamelCase(string phrase)
+        {
+            string[] splittedPhrase = phrase.Split(' ', '-', '.');
+            var sb = new StringBuilder();
+
+            foreach (String s in splittedPhrase)
+            {
+                char[] splittedPhraseChars = s.ToCharArray();
+                if (splittedPhraseChars.Length > 0)
+                {
+                    splittedPhraseChars[0] = ((new String(splittedPhraseChars[0], 1)).ToUpper().ToCharArray())[0];
+                }
+                sb.Append(new String(splittedPhraseChars));
+            }
+            return sb.ToString();
+        }
+
     }
 }

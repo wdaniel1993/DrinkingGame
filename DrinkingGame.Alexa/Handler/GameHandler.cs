@@ -30,7 +30,7 @@ namespace DrinkingGame.WebService.Handler
             _disposable.Dispose();
         }
 
-        public async void Start()
+        public void Start()
         {
             if (_isActive)
             {
