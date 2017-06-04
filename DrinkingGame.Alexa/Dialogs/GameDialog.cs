@@ -43,7 +43,7 @@ namespace DrinkingGame.WebService.Dialogs
         public async Task None(IDialogContext context, LuisResult result)
         {
             string message = $"Sorry I did not understand: " + string.Join(", ", result.Query);
-            await context.PostAsync(message);
+            await Answer(context,message);
             context.Wait(MessageReceived);
         }
 
@@ -53,7 +53,7 @@ namespace DrinkingGame.WebService.Dialogs
             var gameId = _gameService.StartNewGame();
             context.UserData.SetValue("gameId", gameId);
             string message = $"Started new game with ID {gameId}. Please add users.";
-            await context.PostAsync(message);
+            await Answer(context,message);
             context.Wait(MessageReceived);
         }
 
@@ -74,16 +74,16 @@ namespace DrinkingGame.WebService.Dialogs
                             Name = playerName
                         });
 
-                    await context.PostAsync(message);
+                    await Answer(context,message);
                 }
                 else
                 {
-                    await context.PostAsync("Start a game first.");
+                    await Answer(context,"Start a game first.");
                 }
             }
             else
             {
-                await context.PostAsync("Could not get name.");
+                await Answer(context,"Could not get name.");
             }
             context.Wait(MessageReceived);
         }
@@ -96,11 +96,11 @@ namespace DrinkingGame.WebService.Dialogs
             if (game != null)
             {
                 await game.CompleteAddingdPlayers();
-                await context.PostAsync($"Completed adding players.");
+                await Answer(context,$"Completed adding players.");
             }
             else
             {
-                await context.PostAsync("Start a game first.");
+                await Answer(context,"Start a game first.");
             }
             context.Wait(MessageReceived);
         }
@@ -110,6 +110,14 @@ namespace DrinkingGame.WebService.Dialogs
             int gameId;
             context.UserData.TryGetValue<int>("gameId",out gameId);
             return _gameService.Games.FirstOrDefault(x => x.Id == gameId);
+        }
+
+        private async Task Answer(IDialogContext context, string message)
+        {
+            await context.SayAsync(message,message,new MessageOptions
+            {
+                InputHint = InputHints.ExpectingInput
+            });
         }
     }
 }
