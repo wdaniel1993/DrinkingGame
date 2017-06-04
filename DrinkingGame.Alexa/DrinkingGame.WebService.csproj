@@ -171,7 +171,8 @@
     <Compile Include="Communicators\DrinkingGameCommunicator.cs" />
     <Compile Include="Communicators\IDrinkingGameCommunicator.cs" />
     <Compile Include="Controllers\Cortana\CortanaController.cs" />
-    <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="DependencyManager.cs" />
+    <Compile Include="Dialogs\GameDialog.cs" />
     <Compile Include="Handler\GameHandler.cs" />
     <Compile Include="Handler\IGameHandler.cs" />
     <Compile Include="Hubs\DrinkingGameHub.cs" />

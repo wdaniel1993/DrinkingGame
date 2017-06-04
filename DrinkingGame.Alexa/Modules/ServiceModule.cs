@@ -5,6 +5,7 @@ using System.Web;
 using Autofac;
 using DrinkingGame.WebService.Communicators;
 using DrinkingGame.WebService.Services;
+using Microsoft.Bot.Builder.Internals.Fibers;
 
 namespace DrinkingGame.WebService.Modules
 {

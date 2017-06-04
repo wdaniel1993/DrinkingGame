@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using Autofac;
+using DrinkingGame.WebService.Dialogs;
 using DrinkingGame.WebService.Handler;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
@@ -15,8 +17,8 @@ namespace DrinkingGame.WebService.Controllers.Cortana
     [BotAuthentication]
     public class CortanaController : ApiController
     {
-
-        public CortanaController() { 
+        public CortanaController()
+        {
         }
 
 
@@ -29,7 +31,7 @@ namespace DrinkingGame.WebService.Controllers.Cortana
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new Dialogs.RootDialog());
+                await Conversation.SendAsync(activity, () => DependencyManager.Current.Resolve<GameDialog>());
             }
             else
             {

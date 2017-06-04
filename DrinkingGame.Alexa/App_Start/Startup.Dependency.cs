@@ -35,6 +35,8 @@ namespace DrinkingGame.WebService
 
             var container = builder.Build();
 
+            DependencyManager.Current.Container = container;
+
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             hubConfiguration.Resolver = new AutofacDependencyResolver(container);
 
