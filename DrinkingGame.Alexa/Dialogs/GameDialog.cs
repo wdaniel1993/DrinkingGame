@@ -175,6 +175,7 @@ namespace DrinkingGame.WebService.Dialogs
                             {
                                 await Answer(context, $"The loser is {losers.First()}", InputHints.IgnoringInput);
                             }
+                            //TODO: Recurring every 5 seconds till losers took drinks
                             await Answer(context, "Waiting for the losers to drink!", InputHints.IgnoringInput);
                             await game.CurrentRound.DrinkTaken;
                             await Answer(context, "Losers drank. You can either end the game or start a new round!");
