@@ -11,9 +11,11 @@ using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using DrinkingGame.Shared.Interfaces;
+using DrinkingGame.WebService.Dialogs;
 using DrinkingGame.WebService.Handler;
 using DrinkingGame.WebService.Hubs;
 using DrinkingGame.WebService.Modules;
+using Microsoft.Bot.Builder.Luis;
 
 namespace DrinkingGame.WebService
 {

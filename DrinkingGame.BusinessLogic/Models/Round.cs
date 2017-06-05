@@ -35,19 +35,20 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public async Task AddGuess(Guess guess)
         {
-            await Game.CheckState(typeof(AnswerReading));
-            _guesses.Add(guess);
-            _guessAdded.OnNext(guess);
-
-            if (_guesses.Count == Game.Players.Count())
+            if (!_guesses.Exists(x => x.Player == guess.Player))
             {
-                _guessAdded.OnCompleted();
+                _guesses.Add(guess);
+                _guessAdded.OnNext(guess);
+
+                if (_guesses.Count == Game.Players.Count())
+                {
+                    _guessAdded.OnCompleted();
+                }
             }
         }
 
         public async Task PlayerDrank(Player player)
         {
-            await Game.CheckState(typeof(LoserDrinking));
             if (Losers.Contains(player) && !_losersDrank.Contains(player))
             {
                 _losersDrank.Add(player);
@@ -61,7 +62,6 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public async Task CompleteRound(bool isLastRound)
         {
-            await Game.CheckState(typeof(RoundEnding));
             Losers.ForEach(x => x.Score++);
             _isCompleted = true;
             _isLastRound = isLastRound;

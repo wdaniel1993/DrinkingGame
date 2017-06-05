@@ -4,6 +4,7 @@ using System.Text;
 
 namespace DrinkingGame.BusinessLogic.Models
 {
+    [Serializable]
     public class Player
     {
         public string Name { get; set; }
