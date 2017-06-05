@@ -19,8 +19,10 @@ namespace DrinkingGame.BusinessLogic.Models
         private readonly List<Player> _losersDrank = new List<Player>();
         private bool _isCompleted;
         private bool _isLastRound;
+        private bool _guessesCompleted;
 
         public bool IsCompleted => _isCompleted;
+        public bool GuessesCompleted => _guessesCompleted;
         public bool IsLastRound => _isLastRound;
 
         public Puzzle Puzzle { get; set; }
@@ -31,7 +33,7 @@ namespace DrinkingGame.BusinessLogic.Models
         public IObservable<Player> DrinkTaken => _drinkTaken.AsObservable();
         public Game Game { get; set; }
 
-        public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player);
+        public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player).ToList();
 
         public void AddGuess(Guess guess)
         {
@@ -43,13 +45,14 @@ namespace DrinkingGame.BusinessLogic.Models
                 if (_guesses.Count == Game.Players.Count())
                 {
                     _guessAdded.OnCompleted();
+                    _guessesCompleted = true;
                 }
             }
         }
 
         public void PlayerDrank(Player player)
         {
-            if (Losers.Contains(player) && !_losersDrank.Contains(player))
+            if (Losers.Any(x => x.Name == player.Name) && !_losersDrank.Contains(player))
             {
                 _losersDrank.Add(player);
                 _drinkTaken.OnNext(player);

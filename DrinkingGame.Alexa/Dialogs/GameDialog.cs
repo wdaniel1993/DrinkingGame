@@ -160,7 +160,25 @@ namespace DrinkingGame.WebService.Dialogs
                 {
                     if (await TryAction(game.AddGuess(_newGuess), context))
                     {
-                        await Answer(context, "Saved guess.");
+                        var lastGuess = game.CurrentRound.GuessesCompleted;
+                        var losers = game.CurrentRound.Losers.Select(x => x.Name).ToList();
+                        await Answer(context, "Saved guess.",lastGuess ? InputHints.IgnoringInput : InputHints.ExpectingInput);
+                        if (lastGuess)
+                        {
+                            await Answer(context, $"Round completed. Correct answer was {game.CurrentRound.Puzzle.Answer}", InputHints.IgnoringInput);
+
+                            if (losers.Count > 1)
+                            {
+                                await Answer(context, $"The losers are {string.Join(", ", losers)}", InputHints.IgnoringInput);
+                            }
+                            else
+                            {
+                                await Answer(context, $"The loser is {losers.First()}", InputHints.IgnoringInput);
+                            }
+                            await Answer(context, "Waiting for the losers to drink!", InputHints.IgnoringInput);
+                            await game.CurrentRound.DrinkTaken;
+                            await Answer(context, "Losers drank. You can either end the game or start a new round!");
+                        }
                     }
                 }
             }
