@@ -261,4 +261,4 @@ __pycache__/
 *.pyc
 
 # Signalr
-transport.log.txt
+*.log.txt
