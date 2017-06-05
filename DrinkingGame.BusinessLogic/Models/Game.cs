@@ -69,7 +69,7 @@ namespace DrinkingGame.BusinessLogic.Models
         public async Task CompleteCurrentRound(bool lastRound)
         {
             await CheckState(typeof(RoundEnding));
-            await CurrentRound.CompleteRound(lastRound);
+            CurrentRound.CompleteRound(lastRound);
         }
 
         public async Task AddDevice(Device device)
@@ -82,13 +82,13 @@ namespace DrinkingGame.BusinessLogic.Models
         public async Task AddGuess(Guess guess)
         {
             await CheckState(typeof(AnswerReading));
-            await CurrentRound.AddGuess(guess);
+            CurrentRound.AddGuess(guess);
         }
 
         public async Task PlayerDrank(Player player)
         {
             await CheckState(typeof(LoserDrinking));
-            await CurrentRound.PlayerDrank(player);
+            CurrentRound.PlayerDrank(player);
         }
 
         public async Task AddRound(Round round)

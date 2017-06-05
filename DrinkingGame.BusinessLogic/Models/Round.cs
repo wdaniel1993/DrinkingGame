@@ -33,7 +33,7 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player);
 
-        public async Task AddGuess(Guess guess)
+        public void AddGuess(Guess guess)
         {
             if (!_guesses.Exists(x => x.Player == guess.Player))
             {
@@ -47,7 +47,7 @@ namespace DrinkingGame.BusinessLogic.Models
             }
         }
 
-        public async Task PlayerDrank(Player player)
+        public void PlayerDrank(Player player)
         {
             if (Losers.Contains(player) && !_losersDrank.Contains(player))
             {
@@ -60,7 +60,7 @@ namespace DrinkingGame.BusinessLogic.Models
             }
         }
 
-        public async Task CompleteRound(bool isLastRound)
+        public void CompleteRound(bool isLastRound)
         {
             Losers.ForEach(x => x.Score++);
             _isCompleted = true;

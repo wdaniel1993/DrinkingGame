@@ -123,9 +123,13 @@ namespace DrinkingGame.WebService.Dialogs
                         _newGuess = new Guess {Player = player, Estimate = guessedNumber.Value};
                         await Answer(context,
                             $"I heared that {_newGuess.Player.Name} guessed {_newGuess.Estimate}.");
-                        PromptDialog.Confirm(context, AfterConfirm, "Is this correct?",
-                            "Please answer with yes or now. Is this correct?");
 
+                        PromptDialog.Confirm(context, AfterConfirm, new PromptOptions<string>(
+                            prompt: "Is this correct?",
+                            retry: "Please answer with yes or now. Is this correct?",
+                            speak: "Is this correct?",
+                            retrySpeak: "Please answer with yes or now. Is this correct?"
+                        ));
                     }
                     else
                     {
