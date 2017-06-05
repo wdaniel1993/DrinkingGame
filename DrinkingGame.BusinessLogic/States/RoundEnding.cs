@@ -19,15 +19,10 @@ namespace DrinkingGame.BusinessLogic.States
 
         public IObservable<Transition> Enter()
         {
-            return Observable.Create<Transition>(
-                (observer) =>
-                {
-                    observer.OnNext(_game.CurrentRound.IsLastRound
-                        ? Transition.ToGameEnding
-                        : Transition.ToRoundStarting);
-                    return Disposable.Empty;
-                }
-            );
+            var round = _game.CurrentRound;
+            return round.RoundCompleted.Select(_ => round.IsLastRound
+                ? Transition.ToGameEnding
+                : Transition.ToRoundStarting);
         }
     }
 }

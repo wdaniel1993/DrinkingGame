@@ -52,16 +52,21 @@ namespace DrinkingGame.WebService.Handler
                     disposable.Add(game.PlayerAdded.Subscribe(_ => _gameCommunicator.UpdateGameDetails(game)));
 
                     disposable.Add(game.Machine.State
-                        .Do(x =>
-                        {
-                            Console.WriteLine(x);
-                        })
                         .Where(x => x is RoundStarting)
                         .Subscribe(async _ => await game.AddRound(new Round
                         {
                             Game = game,
                             Puzzle = _puzzleService.GetRandomPuzzle()
                         })));
+
+                    disposable.Add(game.Machine.State
+                        .Where(x => x is LoserDrinking)
+                        .Subscribe(_ =>
+                        {
+                            var round = game.CurrentRound;
+                            _gameCommunicator.CorrectAnswer(game, round.Puzzle.Question, round.Puzzle.Answer);
+                            _gameCommunicator.ShouldDrink(game, round.Losers.Select(x => x.Name));
+                        }));
 
                     disposable.Add(game.RoundAdded.Subscribe(round =>
                     {
@@ -72,8 +77,6 @@ namespace DrinkingGame.WebService.Handler
                         }));
                         disposable.Add(round.RoundCompleted.Subscribe(losers =>
                         {
-                            _gameCommunicator.CorrectAnswer(game, round.Puzzle.Question, round.Puzzle.Answer);
-                            _gameCommunicator.ShouldDrink(game, losers.Select(x => x.Name));
                             _gameCommunicator.UpdateScores(game);
                         }));
                     }));

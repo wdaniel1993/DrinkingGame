@@ -28,10 +28,6 @@ namespace DrinkingGame.BusinessLogic.Machine
             IObservable<Transition> transitions = _state
                 .Select(state => state.Enter())
                 .Switch()
-                .Do(x =>
-                {
-                    Console.WriteLine($"Transition to: {x}");
-                })
                 .Publish()
                 .RefCount();
             
@@ -46,10 +42,6 @@ namespace DrinkingGame.BusinessLogic.Machine
             
             return states
                 .ObserveOn(Scheduler.CurrentThread)
-                .Do(x =>
-                {
-                    Console.WriteLine(x);
-                })
                 .Subscribe(_state);
         }
     }
