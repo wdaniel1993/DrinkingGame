@@ -66,7 +66,7 @@ namespace DrinkingGame.WebService.Dialogs
         [LuisIntent("poldi.intent.game.addplayer")]
         public async Task AddPlayer(IDialogContext context, LuisResult result)
         {
-            var playerName = result.Entities.FirstOrDefault(x => x.Type == "playerName")?.Entity;
+            var playerName = result.Entities?.FirstOrDefault(x => x.Type == "playerName")?.Entity;
             if (!string.IsNullOrEmpty(playerName))
             {
                 var game = await CurrentGame(context);
@@ -108,9 +108,9 @@ namespace DrinkingGame.WebService.Dialogs
         [LuisIntent("poldi.intent.game.guess")]
         public async Task AddGuess(IDialogContext context, LuisResult result)
         {
-            var guess = result.CompositeEntities.Where(x => x.ParentType == "guess").SelectMany(x => x.Children).ToList();
-            var playerName = guess.FirstOrDefault(x => x.Type == "playerName")?.Value;
-            var guessAsString = guess.FirstOrDefault(x => x.Type == "builtin.number")?.Value;
+            var guess = result.CompositeEntities?.Where(x => x.ParentType == "guess").SelectMany(x => x.Children).ToList();
+            var playerName = guess?.FirstOrDefault(x => x.Type == "playerName")?.Value;
+            var guessAsString = guess?.FirstOrDefault(x => x.Type == "builtin.number")?.Value;
             var guessedNumber = string.IsNullOrEmpty(guessAsString) ? Option<int>.None() : guessAsString.TryParseInt();
             if (playerName != null && guessedNumber.HasValue)
             {
@@ -122,13 +122,15 @@ namespace DrinkingGame.WebService.Dialogs
                     {
                         _newGuess = new Guess {Player = player, Estimate = guessedNumber.Value};
                         await Answer(context,
-                            $"I heared that {_newGuess.Player.Name} guessed {_newGuess.Estimate}.");
+                            $"I heared that {_newGuess.Player.Name} guessed {_newGuess.Estimate}.",InputHints.IgnoringInput);
 
                         PromptDialog.Confirm(context, AfterConfirm, new PromptOptions<string>(
                             prompt: "Is this correct?",
-                            retry: "Please answer with yes or now. Is this correct?",
+                            retry: "Please answer with yes or no. Is this correct?",
                             speak: "Is this correct?",
-                            retrySpeak: "Please answer with yes or now. Is this correct?"
+                            retrySpeak: "Please answer with yes or now. Is this correct?",
+                            options:new List<string> { "yes", "no"},
+                            tooManyAttempts:"Too many attempts"
                         ));
                     }
                     else
@@ -150,7 +152,8 @@ namespace DrinkingGame.WebService.Dialogs
 
         private async Task AfterConfirm(IDialogContext context, IAwaitable<bool> result)
         {
-            if (await result)
+            var loadedResult = await result.ToTask().ToObservable().Catch(Observable.Return(false));
+            if (loadedResult)
             {
                 var game = await CurrentGame(context);
                 if (game != null)
