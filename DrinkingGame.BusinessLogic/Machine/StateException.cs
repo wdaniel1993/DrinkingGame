@@ -9,12 +9,12 @@ namespace DrinkingGame.BusinessLogic.Machine
     {
         public Type CurrentState { get; }
 
-        public Type ExpectedState { get; }
+        public Type[] ExpectedStates { get; }
 
-        public StateException(Type currentState, Type expectedState)
+        public StateException(Type currentState, params Type[] expectedStates)
         {
             CurrentState = currentState;
-            ExpectedState = expectedState;
+            ExpectedStates = expectedStates;
         }
     }
 }

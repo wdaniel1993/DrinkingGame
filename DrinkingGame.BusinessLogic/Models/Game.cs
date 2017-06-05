@@ -5,6 +5,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Reflection;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using DrinkingGame.BusinessLogic.Machine;
@@ -90,18 +91,18 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public async Task AddRound(Round round)
         {
-            await CheckState(typeof(RoundEnding));
+            await CheckState(typeof(RoundStarting));
             round.Game = this;
             _rounds.Add(round);
             _roundAdded.OnNext(round);
         }
 
-        public async Task CheckState(Type type)
+        public async Task CheckState(params Type[] types)
         {
             var stateType = (await State).GetType();
-            if (!type.IsAssignableFrom(stateType))
+            if (!types.Any(x => x.IsAssignableFrom(stateType)))
             {
-                throw new StateException(stateType, type);
+                throw new StateException(stateType, types);
             }
         }
     }

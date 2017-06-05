@@ -22,14 +22,9 @@ namespace DrinkingGame.BusinessLogic.States
             return Observable.Create<Transition>(
                 (observer) =>
                 {
-                    if (_game.CurrentRound.IsLastRound)
-                    {
-                        observer.OnNext(Transition.ToGameEnding);
-                    }
-                    else
-                    {
-                        observer.OnNext(Transition.ToRoundStarting);
-                    }
+                    observer.OnNext(_game.CurrentRound.IsLastRound
+                        ? Transition.ToGameEnding
+                        : Transition.ToRoundStarting);
                     return Disposable.Empty;
                 }
             );

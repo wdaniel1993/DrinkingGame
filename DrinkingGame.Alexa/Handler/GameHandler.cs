@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Web;
 using DrinkingGame.BusinessLogic.Models;
+using DrinkingGame.BusinessLogic.States;
 using DrinkingGame.WebService.Communicators;
 using DrinkingGame.WebService.Services;
 
@@ -12,15 +14,17 @@ namespace DrinkingGame.WebService.Handler
     public class GameHandler : IGameHandler
     {
         private readonly IGameService _gameService;
+        private readonly IPuzzleService _puzzleService;
         private readonly IDrinkingGameCommunicator _gameCommunicator;
         private IDisposable _disposable;
         private bool _isActive;
 
         public bool IsActive => _isActive;
 
-        public GameHandler(IGameService gameService, IDrinkingGameCommunicator gameCommunicator)
+        public GameHandler(IGameService gameService, IPuzzleService puzzleService,IDrinkingGameCommunicator gameCommunicator)
         {
             _gameService = gameService;
+            _puzzleService = puzzleService;
             _gameCommunicator = gameCommunicator;
             
         }
@@ -46,6 +50,19 @@ namespace DrinkingGame.WebService.Handler
                 {
                     disposable.Add(game.DeviceAdded.Subscribe(_ => _gameCommunicator.UpdateGameDetails(game)));
                     disposable.Add(game.PlayerAdded.Subscribe(_ => _gameCommunicator.UpdateGameDetails(game)));
+
+                    disposable.Add(game.Machine.State
+                        .Do(x =>
+                        {
+                            Console.WriteLine(x);
+                        })
+                        .Where(x => x is RoundStarting)
+                        .Subscribe(async _ => await game.AddRound(new Round
+                        {
+                            Game = game,
+                            Puzzle = _puzzleService.GetRandomPuzzle()
+                        })));
+
                     disposable.Add(game.RoundAdded.Subscribe(round =>
                     {
                         _gameCommunicator.NewQuestion(game, round.Puzzle.Question);

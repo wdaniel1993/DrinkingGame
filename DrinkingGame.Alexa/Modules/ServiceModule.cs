@@ -13,7 +13,7 @@ namespace DrinkingGame.WebService.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-
+            builder.RegisterType<PuzzleService>().As<IPuzzleService>().InstancePerLifetimeScope();
             builder.RegisterType<GameService>().As<IGameService>().InstancePerLifetimeScope();
         }
     }

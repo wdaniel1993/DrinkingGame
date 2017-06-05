@@ -46,6 +46,10 @@ namespace DrinkingGame.BusinessLogic.Machine
             
             return states
                 .ObserveOn(Scheduler.CurrentThread)
+                .Do(x =>
+                {
+                    Console.WriteLine(x);
+                })
                 .Subscribe(_state);
         }
     }

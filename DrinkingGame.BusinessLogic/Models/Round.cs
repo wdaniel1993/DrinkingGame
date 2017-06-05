@@ -31,10 +31,7 @@ namespace DrinkingGame.BusinessLogic.Models
         public IObservable<Player> DrinkTaken => _drinkTaken.AsObservable();
         public Game Game { get; set; }
 
-        public IEnumerable<Player> Losers
-        {
-            get { return Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player); }
-        }
+        public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player);
 
         public async Task AddGuess(Guess guess)
         {
