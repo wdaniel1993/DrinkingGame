@@ -48,6 +48,8 @@ namespace DrinkingGame.WebService
 
             app.UseWebApi(httpConfiguration);
             app.MapSignalR(hubConfiguration);
+
+            container.Resolve<DrinkingGameHub>();
         }
     }
 }
