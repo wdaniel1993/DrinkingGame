@@ -123,7 +123,7 @@ namespace DrinkingGame.WebService.Dialogs
 
         private async Task WriteScores(IDialogContext context, Game game)
         {
-            await Answer(context, $"Current Scores {string.Join("\n", game.Players.Select(x => $"{x.Name}: {x.Score}"))}");
+            await Answer(context, $"Current Scores {string.Join("\n", game.Players.Select(x => $"{x.Name}: {x.Score}"))}", InputHints.IgnoringInput);
         }
 
         [LuisIntent("poldi.intent.game.end")]
