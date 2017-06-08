@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using DrinkingGame.BusinessLogic.Machine;
 using DrinkingGame.BusinessLogic.Models;
+using DrinkingGame.BusinessLogic.States;
 using DrinkingGame.WebService.Services;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Internals.Fibers;
@@ -105,6 +106,40 @@ namespace DrinkingGame.WebService.Dialogs
             context.Wait(MessageReceived);
         }
 
+        [LuisIntent("poldi.intent.game.nextround")]
+        public async Task NextRound(IDialogContext context, LuisResult result)
+        {
+            var game = await CurrentGame(context);
+            if (game != null)
+            {
+                if (await TryAction(game.CompleteCurrentRound(false), context))
+                {
+                    await WriteScores(context, game);
+                    await Answer(context, $"New Question: {game.CurrentRound.Puzzle.Question}");
+                }
+            }
+            context.Wait(MessageReceived);
+        }
+
+        private async Task WriteScores(IDialogContext context, Game game)
+        {
+            await Answer(context, $"Current Scores {string.Join("\n", game.Players.Select(x => $"{x.Name}: {x.Score}"))}");
+        }
+
+        [LuisIntent("poldi.intent.game.end")]
+        public async Task EndGame(IDialogContext context, LuisResult result)
+        {
+            var game = await CurrentGame(context);
+            if (game != null)
+            {
+                if (await TryAction(game.CompleteCurrentRound(true), context))
+                {
+                    await WriteScores(context, game);
+                    await Answer(context, "Finished Game");
+                }
+            }
+        }
+
         [LuisIntent("poldi.intent.game.guess")]
         public async Task AddGuess(IDialogContext context, LuisResult result)
         {
@@ -180,8 +215,10 @@ namespace DrinkingGame.WebService.Dialogs
                                 .TakeUntil(game.CurrentRound.DrinkTaken.LastAsync())
                                 .SelectMany(_ => Answer(context, "Waiting for the losers to drink!", InputHints.IgnoringInput).ToObservable());
 
-                            //await Answer(context, "Waiting for the losers to drink!", InputHints.IgnoringInput);
-                            //await game.CurrentRound.DrinkTaken;
+                            if (await game.State is LoserDrinking)
+                            {
+                                await TryAction(game.IgnoreDrinks(), context);
+                            }
                             await Answer(context, "Losers drank. You can either end the game or start a new round!");
                         }
                     }

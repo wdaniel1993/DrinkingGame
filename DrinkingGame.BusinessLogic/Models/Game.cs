@@ -60,10 +60,10 @@ namespace DrinkingGame.BusinessLogic.Models
             _playerAdded.OnCompleted();
         }
 
-        public async Task CompleteGame()
+        public async Task IgnoreDrinks()
         {
-            await CheckState(typeof(RoundEnding));
-            _roundAdded.OnCompleted();
+            await CheckState(typeof(LoserDrinking));
+            CurrentRound.IgnoreDrinks();
         }
 
         public async Task CompleteCurrentRound(bool lastRound)
@@ -99,7 +99,7 @@ namespace DrinkingGame.BusinessLogic.Models
             _roundAdded.OnNext(round);
         }
 
-        public async Task CheckState(params Type[] types)
+        private async Task CheckState(params Type[] types)
         {
             var stateType = (await State).GetType();
             if (!types.Any(x => x.IsAssignableFrom(stateType)))

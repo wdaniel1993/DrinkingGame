@@ -33,7 +33,7 @@ namespace DrinkingGame.BusinessLogic.Models
         public IObservable<Player> DrinkTaken => _drinkTaken.AsObservable();
         public Game Game { get; set; }
 
-        public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player).ToList();
+        public IEnumerable<Player> Losers => Guesses.MaxBy(x => Math.Abs(x.Estimate - Puzzle.Answer)).Select(x => x.Player);
 
         public void AddGuess(Guess guess)
         {
@@ -65,10 +65,15 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public void CompleteRound(bool isLastRound)
         {
-            Losers.ForEach(x => x.Score++);
+            Game.Players.Where(x => Losers.Select(l => l.Name).ToList().Contains(x.Name)).ForEach(x => x.Score++);
             _isCompleted = true;
             _isLastRound = isLastRound;
             _roundCompleted.OnNext(Losers);
+        }
+
+        public void IgnoreDrinks()
+        {
+            _drinkTaken.OnCompleted();
         }
     }
 }

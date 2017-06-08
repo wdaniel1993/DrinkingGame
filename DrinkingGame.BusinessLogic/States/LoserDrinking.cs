@@ -20,21 +20,14 @@ namespace DrinkingGame.BusinessLogic.States
 
         public IObservable<Transition> Enter()
         {
-            return Observable.Create<Transition>(
-                (observer) =>
-                {
-                    if (_game.Devices.Any(x => x.SupportsShouldDrink))
-                    {
-                        return _game.CurrentRound.DrinkTaken.Subscribe(_ => { }, _ => { },
-                            () => observer.OnNext(Transition.ToRoundEnding));
-                    }
-                    else
-                    {
-                        observer.OnNext(Transition.ToRoundEnding);
-                        return Disposable.Empty;
-                    }
-                }
-            );
+            if (_game.Devices.Any(x => x.SupportsShouldDrink))
+            {
+                return _game.CurrentRound.DrinkTaken.LastAsync().Select(_ => Transition.ToRoundEnding);
+            }
+            else
+            {
+                return Observable.Return(Transition.ToRoundEnding);
+            }
         }
     }
 }
