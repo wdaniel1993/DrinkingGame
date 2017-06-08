@@ -135,7 +135,8 @@ namespace DrinkingGame.WebService.Dialogs
                 if (await TryAction(game.CompleteCurrentRound(true), context))
                 {
                     await WriteScores(context, game);
-                    context.EndConversation("Finished Game");
+                    await Answer(context, "Finish Game", InputHints.IgnoringInput);
+                    context.EndConversation("Game finished");
                 }
             }
         }
