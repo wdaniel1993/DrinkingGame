@@ -211,14 +211,20 @@ namespace DrinkingGame.WebService.Dialogs
                             {
                                 await Answer(context, $"The loser is {losers.First()}", InputHints.IgnoringInput);
                             }
-                            await Observable.Interval(TimeSpan.FromSeconds(5))
-                                .Take(5)
-                                .TakeUntil(game.CurrentRound.DrinkTaken.LastAsync())
-                                .SelectMany(_ => Answer(context, "Waiting for the losers to drink!", InputHints.IgnoringInput).ToObservable());
 
                             if (await game.State is LoserDrinking)
                             {
-                                await TryAction(game.IgnoreDrinks(), context);
+                                await Observable.Interval(TimeSpan.FromSeconds(5))
+                                    .Take(5)
+                                    .TakeUntil(game.CurrentRound.DrinkTaken.LastAsync())
+                                    .SelectMany(_ => Answer(context, "Waiting for the losers to drink!",
+                                            InputHints.IgnoringInput)
+                                        .ToObservable());
+
+                                if (await game.State is LoserDrinking)
+                                {
+                                    await TryAction(game.IgnoreDrinks(), context);
+                                }
                             }
                             await Answer(context, "Losers drank. You can either end the game or start a new round!");
                         }
