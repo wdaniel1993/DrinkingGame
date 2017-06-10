@@ -14,6 +14,13 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DrinkingGame.Client.Core.Hubs;
+using DrinkingGame.Client.Core.ViewModels;
+using DrinkingGame.Raspberry.Views;
+using Microsoft.AspNet.SignalR.Client;
+using ReactiveUI;
+using Splat;
+using DependencyResolverMixins = Splat.DependencyResolverMixins;
 
 namespace DrinkingGame.Raspberry
 {
@@ -28,8 +35,19 @@ namespace DrinkingGame.Raspberry
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
-            this.Suspending += OnSuspending;
+            RegisterDependencies();
+
+            InitializeComponent();
+            Suspending += OnSuspending;
+        }
+
+        private void RegisterDependencies()
+        {
+            Locator.CurrentMutable.RegisterConstant(new HubConnection(@"http://localhost:62562/"),typeof(HubConnection));
+            Locator.CurrentMutable.RegisterConstant(new DrinkingGameHubProxy(Locator.CurrentMutable.GetService<HubConnection>(), "DrinkingGameHub"), typeof(DrinkingGameHubProxy));
+
+            Locator.CurrentMutable.Register(() => new ConnectView(), typeof(IViewFor<ConnectViewModel>));
+            Locator.CurrentMutable.Register(() => new GameView(), typeof(IViewFor<GameViewModel>));
         }
 
         /// <summary>

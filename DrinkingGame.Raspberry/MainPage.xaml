@@ -5,9 +5,10 @@
     xmlns:local="using:DrinkingGame.Raspberry"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:reactiveUi="using:ReactiveUI"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    </Grid>
+    <reactiveUi:ViewModelViewHost HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            ViewModel="{Binding Content}"/>
 </Page>

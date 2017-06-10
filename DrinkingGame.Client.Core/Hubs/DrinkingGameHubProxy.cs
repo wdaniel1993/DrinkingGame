@@ -10,7 +10,7 @@ using Microsoft.AspNet.SignalR.Client;
 using DrinkingGame.Shared.Interfaces;
 using Microsoft.AspNet.SignalR.Client.Hubs;
 
-namespace DrinkingGame.Client.Signalr
+namespace DrinkingGame.Client.Core.Hubs
 {
     public class DrinkingGameHubProxy : IDisposable, IGameServer
     {
