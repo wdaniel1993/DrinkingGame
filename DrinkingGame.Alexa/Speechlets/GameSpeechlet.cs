@@ -81,7 +81,8 @@ namespace DrinkingGame.WebService.Speechlets
                     }
                 }
             }
-            throw new SpeechletException("Invalid Intent");
+            return BuildSpeechletResponse("Unklare Frage",
+                "Ich habe dich leider nicht verstanden", false);
         }
 
         private async Task<SpeechletResponse> EndGame(Intent intent, Game game)

@@ -29,7 +29,7 @@ namespace DrinkingGame.WebService.Services
                     "de", new List<Puzzle>
                     {
                         new Puzzle {Question = "Wie viele Tage hat eine Woche?", Answer = 7},
-                        new Puzzle {Question = "Wieviele million Leute wohnen in Österreich?", Answer = 7},
+                        new Puzzle {Question = "Wieviele Million Leute wohnen in Österreich?", Answer = 7},
                         new Puzzle {Question = "Wie hoch ist der Eiffelturm in Meter?", Answer = 300},
                         new Puzzle {Question = "Wie viele Tonnen wiegt ein Blauwal?", Answer = 17}
                     }
