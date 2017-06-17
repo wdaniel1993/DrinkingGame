@@ -266,7 +266,11 @@ namespace DrinkingGame.WebService.Speechlets
             };
 
             // Create the plain text output.
-            PlainTextOutputSpeech speech = new PlainTextOutputSpeech {Text = output};
+            var text = string.Join("<break strength='x-strong'/>", output.Split());
+            OutputSpeech speech = new SsmlOutputSpeech
+            {
+                Ssml = $"<speak>{text}</speak>"
+            };
 
             // Create the speechlet response.
             return new SpeechletResponse
