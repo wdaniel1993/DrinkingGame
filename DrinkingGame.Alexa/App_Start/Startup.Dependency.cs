@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 using DrinkingGame.Shared.Interfaces;
 using DrinkingGame.WebService.Dialogs;
 using DrinkingGame.WebService.Handler;
@@ -26,6 +27,7 @@ namespace DrinkingGame.WebService
             var httpConfiguration = new HttpConfiguration();
             var hubConfiguration = new HubConfiguration();
 
+            httpConfiguration.Services.Add(typeof(IExceptionLogger), new TraceExceptionLogger());
             WebApiConfig.Register(httpConfiguration);
 
             var builder = new ContainerBuilder();
