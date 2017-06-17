@@ -25,6 +25,8 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public int Id { get; }
 
+        public string Language { get; }
+
         public IEnumerable<Player> Players => _players.AsReadOnly();
         public IEnumerable<Device> Devices => _devices.AsReadOnly();
         public IEnumerable<Round> Rounds => _rounds.AsReadOnly();
@@ -35,9 +37,10 @@ namespace DrinkingGame.BusinessLogic.Models
 
         public IObservable<IState> State => Machine.State.FirstAsync();
 
-        public Game(int id)
+        public Game(int id, string language)
         {
             Id = id;
+            Language = language;
             Machine = new GameStateMachine(new StateFactory(this));
 
             Machine.Initialize();

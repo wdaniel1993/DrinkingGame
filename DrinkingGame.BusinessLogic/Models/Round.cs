@@ -20,10 +20,12 @@ namespace DrinkingGame.BusinessLogic.Models
         private bool _isCompleted;
         private bool _isLastRound;
         private bool _guessesCompleted;
+        private bool _drinksCompleted;
 
         public bool IsCompleted => _isCompleted;
         public bool GuessesCompleted => _guessesCompleted;
         public bool IsLastRound => _isLastRound;
+        public bool DrinksCompleted => _drinksCompleted;
 
         public Puzzle Puzzle { get; set; }
         public IEnumerable<Guess> Guesses => _guesses.AsReadOnly();
@@ -60,6 +62,7 @@ namespace DrinkingGame.BusinessLogic.Models
             if (_losersDrank.Count == Losers.Count())
             {
                 _drinkTaken.OnCompleted();
+                _drinksCompleted = true;
             }
         }
 

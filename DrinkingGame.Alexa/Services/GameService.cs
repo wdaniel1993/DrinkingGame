@@ -15,10 +15,10 @@ namespace DrinkingGame.WebService.Services
         public IEnumerable<Game> Games => _games.AsReadOnly();
         public IObservable<Game> GameAdded => _gameAdded.AsObservable();
 
-        public int StartNewGame()
+        public int StartNewGame(string language)
         {
             var nextId = _games.Select(x => x.Id).DefaultIfEmpty().Max() + 1;
-            var game = new Game(nextId);
+            var game = new Game(nextId, language);
             _games.Add(game);
             _gameAdded.OnNext(game);
             return nextId;

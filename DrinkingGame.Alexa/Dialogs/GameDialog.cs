@@ -57,7 +57,7 @@ namespace DrinkingGame.WebService.Dialogs
         [LuisIntent("poldi.intent.game.start")]
         public async Task StartGame(IDialogContext context, LuisResult result)
         {
-            var gameId = _gameService.StartNewGame();
+            var gameId = _gameService.StartNewGame("en");
             context.UserData.SetValue("gameId", gameId);
             string message = $"Started new game with ID {gameId}. Please add users.";
             await Answer(context,message);

@@ -8,8 +8,8 @@ namespace DrinkingGame.WebService.Services
 {
     public interface IPuzzleService
     {
-        Puzzle GetRandomPuzzle();
+        Puzzle GetRandomPuzzle(string language);
 
-        IEnumerable<Puzzle> Puzzles { get; }
+        IEnumerable<Puzzle> Puzzles(string language);
     }
 }

@@ -56,7 +56,7 @@ namespace DrinkingGame.WebService.Handler
                         .Subscribe(async _ => await game.AddRound(new Round
                         {
                             Game = game,
-                            Puzzle = _puzzleService.GetRandomPuzzle()
+                            Puzzle = _puzzleService.GetRandomPuzzle(game.Language)
                         })));
 
                     disposable.Add(game.Machine.State

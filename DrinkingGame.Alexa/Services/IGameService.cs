@@ -9,6 +9,6 @@ namespace DrinkingGame.WebService.Services
         IEnumerable<Game> Games { get; }
         IObservable<Game> GameAdded { get; }
 
-        int StartNewGame();
+        int StartNewGame(string language);
     }
 }
