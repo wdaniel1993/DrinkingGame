@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using AlexaSkillsKit.Authentication;
@@ -266,7 +267,8 @@ namespace DrinkingGame.WebService.Speechlets
             };
 
             // Create the plain text output.
-            var text = string.Join("<break strength='x-strong'/>", output.Split());
+            var lines = output.Split('\n').Select(x => Regex.Replace(x, @"\b(\d+)", AddMarkup,RegexOptions.Multiline));
+            var text = string.Join( "<break strength='x-strong'/> ", lines);
             OutputSpeech speech = new SsmlOutputSpeech
             {
                 Ssml = $"<speak>{text}</speak>"
@@ -279,6 +281,15 @@ namespace DrinkingGame.WebService.Speechlets
                 OutputSpeech = speech,
                 Card = card
             };
+        }
+
+        private string AddMarkup(Match match)
+        {
+            return match.Value.TryParseInt()
+                .Match<string>()
+                .Some().Do(x => $"<say-as interpret-as='cardinal'>{x}</say-as>")
+                .None().Do(match.Value)
+                .Result();
         }
 
         private async Task<Option<Game>> CurrentGame(Session session)
