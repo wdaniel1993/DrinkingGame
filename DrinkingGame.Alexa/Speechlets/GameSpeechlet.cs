@@ -121,7 +121,7 @@ namespace DrinkingGame.WebService.Speechlets
             {
                 message.AppendLine(WriteScores(game));
                 message.AppendLine($"Neue Frage: {game.CurrentRound.Puzzle.Question}");
-                return BuildSpeechletResponse("Nächste Runde", message.ToString(), true);
+                return BuildSpeechletResponse("Nächste Runde", message.ToString(), false);
             }
         }
 
