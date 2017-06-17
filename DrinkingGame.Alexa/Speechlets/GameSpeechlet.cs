@@ -153,16 +153,17 @@ namespace DrinkingGame.WebService.Speechlets
                         {
                             var losers = game.CurrentRound.Losers.Select(x => x.Name).ToList();
 
-                            message.AppendLine($"Runde beendet. Die korrekte Antwort war: {game.CurrentRound.Puzzle.Answer}");
+                            message.AppendLine($"Die Runde ist beendet. Die korrekte Antwort war: {game.CurrentRound.Puzzle.Answer}. ");
                             if (losers.Count > 1)
                             {
-                                message.AppendLine($"Die Verlierer sind {string.Join(", ", losers)}");
+                                message.AppendLine($"Die Verlierer sind {string.Join(", ", losers)}.");
                             }
                             else
                             {
-                                message.AppendLine($"Die Verlierer ist {losers.First()}");
+                                message.AppendLine($"Der Verlierer ist {losers.First()}.");
                             }
-                            message.AppendLine($"An die Verlierer: Prost");
+                            message.AppendLine("An die Verlierer: Prost.");
+                            message.AppendLine("Willst du eine neue Runde starten oder das Spiel beenden.");
                         }
                         return BuildSpeechletResponse($"Spieler {player.Value.Name} schätzt {guessedNumber.Value}",
                            message.ToString(), false);
@@ -303,7 +304,7 @@ namespace DrinkingGame.WebService.Speechlets
 
         private Option<Player> GetPlayer(Game game, string playerName)
         {
-            var player = game.Players.TryFirst(x => playerName == x.Name || playerName.Contains(x.Name) || x.Name.Contains(playerName));
+            var player = game.Players.TryFirst(x => playerName.ToLower() == x.Name.ToLower() || playerName.ToLower().Contains(x.Name.ToLower()) || x.Name.ToLower().Contains(playerName.ToLower()));
             return player;
         }
 
