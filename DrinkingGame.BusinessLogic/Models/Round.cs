@@ -77,6 +77,7 @@ namespace DrinkingGame.BusinessLogic.Models
         public void IgnoreDrinks()
         {
             _drinkTaken.OnCompleted();
+            _drinksCompleted = true;
         }
     }
 }

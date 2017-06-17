@@ -91,7 +91,10 @@ namespace DrinkingGame.WebService.Speechlets
             if (!game.CurrentRound.DrinksCompleted)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
-                await game.IgnoreDrinks();
+                if (await TryAction(game.IgnoreDrinks()))
+                {
+                    message.AppendLine("Wir machen trotzdem weiter");
+                }
             }
             var actionRes = await TryAction(game.CompleteCurrentRound(true));
             if (actionRes.IsFailure)
@@ -112,7 +115,10 @@ namespace DrinkingGame.WebService.Speechlets
             if (!game.CurrentRound.DrinksCompleted)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
-                await game.IgnoreDrinks();
+                if (await TryAction(game.IgnoreDrinks()))
+                {
+                    message.AppendLine("Wir machen trotzdem weiter");
+                }
             }
             var actionRes = await TryAction(game.CompleteCurrentRound(false));
             if (actionRes.IsFailure)
