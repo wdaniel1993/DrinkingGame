@@ -128,7 +128,7 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<SpeechletResponse> NewGuess(Intent intent, Game game)
         {
             var playerName = intent.Slots.TryGetValue(PLAYERNAME_SLOT).Map(x => x.Value);
-            var guessedNumber = intent.Slots.TryGetValue(GUESSEDNUMBER_SLOT).Map(x => x.Name.TryParseInt()).Flatten();
+            var guessedNumber = intent.Slots.TryGetValue(GUESSEDNUMBER_SLOT).Map(x => x.Value.TryParseInt()).Flatten();
             if (playerName.HasValue && guessedNumber.HasValue)
             {
                 var player = GetPlayer(game, playerName.Value);
@@ -175,6 +175,14 @@ namespace DrinkingGame.WebService.Speechlets
             }
             else
             {
+                if (!playerName.HasValue)
+                {
+                    return BuildSpeechletResponse("Kein Spielername", "Spielername konnte nicht verstanden werden", false);
+                }
+                if(!guessedNumber.HasValue)
+                {
+                    return BuildSpeechletResponse(" Keine Schätzung", "Schätzung konnte nicht verstanden werden", false);
+                }
                 return BuildSpeechletResponse("Kein Spielername / Keine Schätzung", "Spielername oder Schätzung konnte nicht verstanden werden", false);
             }
         }
