@@ -88,7 +88,7 @@ namespace DrinkingGame.WebService.Speechlets
             var message = new StringBuilder();
             if (game.CurrentRound.DrinksCompleted)
             {
-                message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost.");
+                message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
                 await game.IgnoreDrinks();
             }
             var actionRes = await TryAction(game.CompleteCurrentRound(true));
@@ -99,7 +99,7 @@ namespace DrinkingGame.WebService.Speechlets
             else
             {
                 message.AppendLine(WriteScores(game));
-                message.AppendLine("Spiel beendet.");
+                message.AppendLine("Spiel beendet");
                 return BuildSpeechletResponse("Spiel beendet", message.ToString(), true);
             }
         }
@@ -109,7 +109,7 @@ namespace DrinkingGame.WebService.Speechlets
             var message = new StringBuilder();
             if (game.CurrentRound.DrinksCompleted)
             {
-                message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost.");
+                message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
                 await game.IgnoreDrinks();
             }
             var actionRes = await TryAction(game.CompleteCurrentRound(false));
@@ -120,7 +120,7 @@ namespace DrinkingGame.WebService.Speechlets
             else
             {
                 message.AppendLine(WriteScores(game));
-                message.AppendLine("Neue Frage: {game.CurrentRound.Puzzle.Question}.");
+                message.AppendLine($"Neue Frage: {game.CurrentRound.Puzzle.Question}");
                 return BuildSpeechletResponse("Nächste Runde", message.ToString(), true);
             }
         }
@@ -148,22 +148,22 @@ namespace DrinkingGame.WebService.Speechlets
                     else
                     {
                         var message = new StringBuilder();
-                        message.AppendLine($"{player.Value.Name} schätzt {guessedNumber.Value}.");
+                        message.AppendLine($"{player.Value.Name} schätzt {guessedNumber.Value}");
                         if (game.CurrentRound.GuessesCompleted)
                         {
                             var losers = game.CurrentRound.Losers.Select(x => x.Name).ToList();
 
-                            message.AppendLine($"Die Runde ist beendet. Die korrekte Antwort war: {game.CurrentRound.Puzzle.Answer}. ");
+                            message.AppendLine($"Die Runde ist beendet. Die korrekte Antwort war: {game.CurrentRound.Puzzle.Answer}");
                             if (losers.Count > 1)
                             {
-                                message.AppendLine($"Die Verlierer sind {string.Join(", ", losers)}.");
+                                message.AppendLine($"Die Verlierer sind {string.Join(", ", losers)}");
                             }
                             else
                             {
-                                message.AppendLine($"Der Verlierer ist {losers.First()}.");
+                                message.AppendLine($"Der Verlierer ist {losers.First()}");
                             }
-                            message.AppendLine("An die Verlierer: Prost.");
-                            message.AppendLine("Willst du eine neue Runde starten oder das Spiel beenden.");
+                            message.AppendLine("An die Verlierer: Prost");
+                            message.AppendLine("Willst du eine neue Runde starten oder das Spiel beenden");
                         }
                         return BuildSpeechletResponse($"Spieler {player.Value.Name} schätzt {guessedNumber.Value}",
                            message.ToString(), false);
@@ -231,7 +231,7 @@ namespace DrinkingGame.WebService.Speechlets
         {
             var gameId = _gameService.StartNewGame("de");
             session.Attributes[GAMEID_KEY] = gameId.ToString();
-            string message = $"Neues Spiel mit der ID {gameId} wurde gestartet. Füge doch ein paar Spieler hinzu.";
+            string message = $"Neues Spiel mit der ID {gameId} wurde gestartet. Füge doch ein paar Spieler hinzu";
             return BuildSpeechletResponse($"Game {gameId}", message, false);
         }
 
@@ -293,13 +293,13 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<Success<string>> TryAction(Task action)
         {
             return await action.ToObservable().Select(_ => new Success<string>())
-                .Catch<Success<string>, StateException>(exception => Observable.Return(Success.CreateFailure("Dies ist weder der rechte Ort noch die rechte Zeit dafür.")));
+                .Catch<Success<string>, StateException>(exception => Observable.Return(Success.CreateFailure("Dies ist weder der rechte Ort noch die rechte Zeit dafür")));
         }
 
         private async Task<Either<T, string>> TryAction<T>(Task<T> action)
         {
             return await action.ToObservable().Select(x => new Either<T, string>(x))
-                .Catch<Either<T, string>, StateException>(exception => Observable.Return(new Either<T, string>("Dies ist weder der rechte Ort noch die rechte Zeit dafür.")));
+                .Catch<Either<T, string>, StateException>(exception => Observable.Return(new Either<T, string>("Dies ist weder der rechte Ort noch die rechte Zeit dafür")));
         }
 
         private Option<Player> GetPlayer(Game game, string playerName)
