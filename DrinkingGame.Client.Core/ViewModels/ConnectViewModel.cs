@@ -16,10 +16,10 @@ namespace DrinkingGame.Client.Core.ViewModels
 {
     public class ConnectViewModel : ReactiveObject
     {
-        private DrinkingGameHubProxy _hubProxy;
-        private HubConnection _connection;
+        private readonly DrinkingGameHubProxy _hubProxy;
+        private readonly HubConnection _connection;
+        private readonly ReactiveCommand<Unit, bool> _connectCommand;
         private string _gameId = string.Empty;
-        private ReactiveCommand<Unit, bool> _connectCommand;
 
         public string GameId
         {

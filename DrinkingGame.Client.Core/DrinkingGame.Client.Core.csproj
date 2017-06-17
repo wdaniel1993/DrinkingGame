@@ -112,6 +112,7 @@
     <Compile Include="ViewModels\ConnectViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
     <EmbeddedResource Include="Properties\DrinkingGame.Client.Core.rd.xml" />
   </ItemGroup>
   <ItemGroup>

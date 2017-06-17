@@ -9,7 +9,12 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel Padding="20">
+        <TextBlock Name="Question"  HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="20" Text="Question" />
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center"  Name="AnswerBlock" Visibility="Collapsed" Margin="0,0,0,20">
+            <TextBlock FontSize="18" Text="Correct Answer: "/>
+            <TextBlock FontSize="18" Text ="5" Margin="20,0,0,0" Name="Answer"/>
+        </StackPanel>
+        <ListBox Name="Players" />
+    </StackPanel>
 </UserControl>

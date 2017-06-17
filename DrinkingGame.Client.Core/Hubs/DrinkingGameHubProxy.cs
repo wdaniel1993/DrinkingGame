@@ -32,7 +32,7 @@ namespace DrinkingGame.Client.Core.Hubs
         private readonly Subject<ShouldDrinkDto> _shouldDrink = new Subject<ShouldDrinkDto>();
         public IObservable<ShouldDrinkDto> ShouldDrink => _shouldDrink.AsObservable();
 
-        private readonly Subject<UpdateGameDetailsDto> _updateGameDetails = new Subject<UpdateGameDetailsDto>();
+        private readonly BehaviorSubject<UpdateGameDetailsDto> _updateGameDetails = new BehaviorSubject<UpdateGameDetailsDto>(null);
         public IObservable<UpdateGameDetailsDto> UpdateGameDetails => _updateGameDetails.AsObservable();
 
         private readonly Subject<UpdateScoresDto> _updateScores = new Subject<UpdateScoresDto>();
@@ -60,7 +60,7 @@ namespace DrinkingGame.Client.Core.Hubs
             _disposable.Dispose();
         }
 
-        private static IDisposable ConnectToEvent<T>(IHubProxy hubProxy,string methodName, Subject<T> subject)
+        private static IDisposable ConnectToEvent<T>(IHubProxy hubProxy,string methodName, ISubject<T> subject)
         {
             return hubProxy.On<T>(ConvertToCamelCase(methodName), subject.OnNext);
         }

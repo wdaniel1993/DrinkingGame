@@ -19,35 +19,36 @@ using ReactiveUI;
 
 namespace DrinkingGame.Raspberry.Views
 {
-    public sealed partial class GameView : UserControl, IViewFor<GameViewModel>
+    public sealed partial class PlayerView : IViewFor<PlayerViewModel>
     {
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.Register(
                 "ViewModel",
-                typeof(GameViewModel),
-                typeof(GameView),
+                typeof(PlayerViewModel),
+                typeof(PlayerView),
                 new PropertyMetadata(null));
 
-        public GameView()
+        public PlayerView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.OneWayBind(ViewModel, vm => vm.Question, view => view.Question.Text);
+            this.OneWayBind(ViewModel, vm => vm.Name, view => view.PlayerName.Text);
+            this.OneWayBind(ViewModel, vm => vm.Score, view => view.Score.Text);
+            this.OneWayBind(ViewModel, vm => vm.ShouldDrink, view => view.Loser.IsChecked);
             this.OneWayBind(ViewModel, vm => vm.Answer, view => view.Answer.Text);
-            this.OneWayBind(ViewModel, vm => vm.Answer, view => view.AnswerBlock.Visibility, x => x == default(int) ? Visibility.Collapsed : Visibility.Visible);
-            this.OneWayBind(ViewModel, vm => vm.Players, view => view.Players.ItemsSource);
+            this.OneWayBind(ViewModel, vm => vm.Answer, view => view.AnswerPanel.Visibility, x => x == default(int) ? Visibility.Collapsed : Visibility.Visible);
         }
 
-        public GameViewModel ViewModel
+        public PlayerViewModel ViewModel
         {
-            get => (GameViewModel)GetValue(ViewModelProperty);
+            get => (PlayerViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
 
         object IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (GameViewModel)value;
+            set => ViewModel = (PlayerViewModel)value;
         }
     }
 }

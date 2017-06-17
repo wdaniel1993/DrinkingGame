@@ -87,7 +87,7 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<SpeechletResponse> EndGame(Intent intent, Game game)
         {
             var message = new StringBuilder();
-            if (game.CurrentRound.DrinksCompleted)
+            if (!game.CurrentRound.DrinksCompleted)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
                 await game.IgnoreDrinks();
@@ -108,7 +108,7 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<SpeechletResponse> NextRound(Intent intent, Game game)
         {
             var message = new StringBuilder();
-            if (game.CurrentRound.DrinksCompleted)
+            if (!game.CurrentRound.DrinksCompleted)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
                 await game.IgnoreDrinks();
