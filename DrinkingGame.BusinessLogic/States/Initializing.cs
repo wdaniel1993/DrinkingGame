@@ -18,7 +18,7 @@ namespace DrinkingGame.BusinessLogic.States
 
         public IObservable<Transition> Enter()
         {
-            return _game.PlayerAdded.LastAsync().Select(_ => (Transition.ToRoundStarting));
+            return _game.PlayerAdded.LastOrDefaultAsync().Select(_ => (Transition.ToRoundStarting));
         }
     }
 }

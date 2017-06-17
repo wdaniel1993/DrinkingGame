@@ -19,7 +19,7 @@ namespace DrinkingGame.BusinessLogic.States
 
         public IObservable<Transition> Enter()
         {
-            return _game.CurrentRound.GuessesAdded.LastAsync().Select(_ => Transition.ToLoserDrinking);
+            return _game.CurrentRound.GuessesAdded.LastOrDefaultAsync().Select(_ => Transition.ToLoserDrinking);
         }
     }
 }

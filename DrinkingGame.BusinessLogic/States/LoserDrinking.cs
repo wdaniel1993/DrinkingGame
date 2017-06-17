@@ -22,7 +22,7 @@ namespace DrinkingGame.BusinessLogic.States
         {
             if (_game.Devices.Any(x => x.SupportsShouldDrink))
             {
-                return _game.CurrentRound.DrinkTaken.LastAsync().Select(_ => Transition.ToRoundEnding);
+                return _game.CurrentRound.DrinkTaken.LastOrDefaultAsync().Select(_ => Transition.ToRoundEnding);
             }
             else
             {

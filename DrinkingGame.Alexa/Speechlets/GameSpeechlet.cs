@@ -14,6 +14,7 @@ using AlexaSkillsKit.Speechlet;
 using AlexaSkillsKit.UI;
 using DrinkingGame.BusinessLogic.Machine;
 using DrinkingGame.BusinessLogic.Models;
+using DrinkingGame.BusinessLogic.States;
 using DrinkingGame.WebService.Services;
 using Microsoft.Bot.Builder.Dialogs;
 using NLog;
@@ -48,6 +49,7 @@ namespace DrinkingGame.WebService.Speechlets
         {
             Log.Info("OnRequestValidation requestId={0}, result={1}", requestEnvelope.Request.RequestId, result);
             return result == SpeechletRequestValidationResult.OK;
+            //return true;
         }
 
         public override async Task<SpeechletResponse> OnIntentAsync(IntentRequest intentRequest, Session session)
@@ -88,10 +90,10 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<SpeechletResponse> EndGame(Intent intent, Game game)
         {
             var message = new StringBuilder();
-            if (!game.CurrentRound.DrinksCompleted)
+            if (await game.State is LoserDrinking)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
-                if (await TryAction(game.IgnoreDrinks()))
+                if ((await TryAction(game.IgnoreDrinks())).IsFailure)
                 {
                     message.AppendLine("Wir machen trotzdem weiter");
                 }
@@ -112,10 +114,10 @@ namespace DrinkingGame.WebService.Speechlets
         private async Task<SpeechletResponse> NextRound(Intent intent, Game game)
         {
             var message = new StringBuilder();
-            if (!game.CurrentRound.DrinksCompleted)
+            if (await game.State is LoserDrinking)
             {
                 message.AppendLine("Ein paar Schwachstellen haben noch nicht getrunken. Prost");
-                if (await TryAction(game.IgnoreDrinks()))
+                if ((await TryAction(game.IgnoreDrinks())).IsFailure)
                 {
                     message.AppendLine("Wir machen trotzdem weiter");
                 }

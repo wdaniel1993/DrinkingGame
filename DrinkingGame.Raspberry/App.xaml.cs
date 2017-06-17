@@ -44,6 +44,7 @@ namespace DrinkingGame.Raspberry
         private void RegisterDependencies()
         {
             Locator.CurrentMutable.RegisterConstant(new HubConnection(@"https://poldiapi.azurewebsites.net/"),typeof(HubConnection));
+            //Locator.CurrentMutable.RegisterConstant(new HubConnection(@"http://localhost:62562/"), typeof(HubConnection));
             Locator.CurrentMutable.RegisterConstant(new DrinkingGameHubProxy(Locator.CurrentMutable.GetService<HubConnection>(), "DrinkingGameHub"), typeof(DrinkingGameHubProxy));
 
             Locator.CurrentMutable.Register(() => new ConnectView(), typeof(IViewFor<ConnectViewModel>));
