@@ -13,6 +13,8 @@ namespace DrinkingGame.Client.Core.ViewModels
         private int _answer;
         private string _name = String.Empty;
         private bool _shouldDrink;
+        private int? _sensorIndex;
+        private bool _isDrinking;
 
         public int Score {
             get => _score;
@@ -35,6 +37,18 @@ namespace DrinkingGame.Client.Core.ViewModels
         {
             get => _shouldDrink;
             set => this.RaiseAndSetIfChanged(ref _shouldDrink, value);
+        }
+
+        public int? SensorIndex
+        {
+            get => _sensorIndex;
+            set => this.RaiseAndSetIfChanged(ref _sensorIndex, value);
+        }
+
+        public bool IsDrinking
+        {
+            get => _isDrinking;
+            set => this.RaiseAndSetIfChanged(ref _isDrinking, value);
         }
     }
 }

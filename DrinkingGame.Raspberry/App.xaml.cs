@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DrinkingGame.Client.Core.Hubs;
+using DrinkingGame.Client.Core.IoT;
 using DrinkingGame.Client.Core.ViewModels;
 using DrinkingGame.Raspberry.Views;
 using Microsoft.AspNet.SignalR.Client;
@@ -46,6 +48,11 @@ namespace DrinkingGame.Raspberry
             Locator.CurrentMutable.RegisterConstant(new HubConnection(@"https://poldiapi.azurewebsites.net/"),typeof(HubConnection));
             //Locator.CurrentMutable.RegisterConstant(new HubConnection(@"http://localhost:62562/"), typeof(HubConnection));
             Locator.CurrentMutable.RegisterConstant(new DrinkingGameHubProxy(Locator.CurrentMutable.GetService<HubConnection>(), "DrinkingGameHub"), typeof(DrinkingGameHubProxy));
+            if (Package.Current.Id.Architecture == ProcessorArchitecture.Arm)
+            {
+                Locator.CurrentMutable.RegisterConstant(new AvoidanceSensorService(26), typeof(IAvoidanceSensorService));
+            }
+            
 
             Locator.CurrentMutable.Register(() => new ConnectView(), typeof(IViewFor<ConnectViewModel>));
             Locator.CurrentMutable.Register(() => new GameView(), typeof(IViewFor<GameViewModel>));

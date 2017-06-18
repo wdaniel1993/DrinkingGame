@@ -6,6 +6,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DrinkingGame.Client.Core.Hubs;
+using DrinkingGame.Client.Core.IoT;
 using ReactiveUI;
 using Splat;
 using SuccincT.Options;
@@ -18,6 +19,7 @@ namespace DrinkingGame.Client.Core.ViewModels
         private ReactiveList<PlayerViewModel> _players;
         private readonly ObservableAsPropertyHelper<string> _question;
         private readonly ObservableAsPropertyHelper<int> _answer;
+        private readonly IList<IAvoidanceSensorService> _sensorServices;
 
         public ReactiveList<PlayerViewModel> Players => _players;
 
@@ -37,23 +39,42 @@ namespace DrinkingGame.Client.Core.ViewModels
             }
         }
 
-        public GameViewModel(DrinkingGameHubProxy hubProxy = null)
+        public GameViewModel(DrinkingGameHubProxy hubProxy = null, IList<IAvoidanceSensorService> sensorServices = null)
         {
-            _hubProxy = hubProxy ?? Locator.CurrentMutable.GetService<DrinkingGameHubProxy>(); ;
+            _hubProxy = hubProxy ?? Locator.CurrentMutable.GetService<DrinkingGameHubProxy>();
+            _sensorServices = sensorServices ?? Locator.CurrentMutable.GetServices<IAvoidanceSensorService>().ToList();
 
             _players = new ReactiveList<PlayerViewModel> { ChangeTrackingEnabled = true };
 
             _hubProxy.UpdateGameDetails
-                .Select(x => x.Players.Select(player => new PlayerViewModel { Name = player }))
+                .Select(x => x.Players.Select(player => new PlayerViewModel { Name = player }).ToList())
                 .ObserveOnDispatcher()
                 .Subscribe(x =>
             {
                 using (_players.SuppressChangeNotifications())
                 {
                     _players.Clear();
-                    _players.AddRange(x);
+                    for(var i = 0; i< x.Count; i++)
+                    {
+                        var player = x[i];
+                        player.SensorIndex = i < _sensorServices.Count ? i : default(int?);
+                        _players.Add(player);
+                    }
                 }
             });
+
+            _sensorServices.ToObservable()
+                .SelectMany((service, i) => service.Obstacle.Select(obstacle => (obstacle, i)))
+                .ObserveOnDispatcher()
+                .Subscribe(x =>
+                {
+                    _players.Where(player => player.SensorIndex == x.Item2)
+                        .Select(player =>
+                        {
+                            player.IsDrinking = !x.Item1;
+                            return Unit.Default;
+                        });
+                });
 
             _hubProxy.UpdateScores.ObserveOnDispatcher().Subscribe(x =>
             {

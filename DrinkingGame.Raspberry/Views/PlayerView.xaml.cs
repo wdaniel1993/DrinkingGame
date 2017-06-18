@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -37,6 +38,8 @@ namespace DrinkingGame.Raspberry.Views
             this.OneWayBind(ViewModel, vm => vm.ShouldDrink, view => view.Loser.IsChecked);
             this.OneWayBind(ViewModel, vm => vm.Answer, view => view.Answer.Text);
             this.OneWayBind(ViewModel, vm => vm.Answer, view => view.AnswerPanel.Visibility, x => x == default(int) ? Visibility.Collapsed : Visibility.Visible);
+            this.OneWayBind(ViewModel, vm => vm.IsDrinking, view => view.PlayerName.FontStyle,
+                x => x ? FontStyle.Italic : FontStyle.Normal);
         }
 
         public PlayerViewModel ViewModel

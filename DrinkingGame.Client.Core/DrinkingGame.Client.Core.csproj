@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Hubs\DrinkingGameHubProxy.cs" />
+    <Compile Include="IoT\AvoidanceSensorService.cs" />
+    <Compile Include="IoT\IAvoidanceSensorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ConnectViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
