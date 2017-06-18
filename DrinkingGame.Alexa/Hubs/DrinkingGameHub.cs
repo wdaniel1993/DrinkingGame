@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Autofac;
+using DrinkingGame.BusinessLogic.Machine;
 using DrinkingGame.BusinessLogic.Models;
 using DrinkingGame.Shared.DataTransfer;
 using DrinkingGame.WebService.Handler;
@@ -64,7 +65,12 @@ namespace DrinkingGame.WebService.Hubs
 
             if (game != null && gamePlayer != null)
             {
-                await game.PlayerDrank(gamePlayer);
+                try
+                {
+                    await game.PlayerDrank(gamePlayer);
+                }
+                catch (StateException)
+                {}
             }
         }
     }

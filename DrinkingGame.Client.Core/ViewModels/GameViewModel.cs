@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Text;
 using System.Threading.Tasks;
 using DrinkingGame.Client.Core.Hubs;
 using DrinkingGame.Client.Core.IoT;
+using DrinkingGame.Shared.DataTransfer;
 using ReactiveUI;
 using Splat;
 using SuccincT.Options;
@@ -66,15 +68,16 @@ namespace DrinkingGame.Client.Core.ViewModels
             _sensorServices.ToObservable()
                 .SelectMany((service, i) => service.Obstacle.Select(obstacle => (obstacle, i)))
                 .ObserveOnDispatcher()
-                .Subscribe(x =>
-                {
-                    _players.Where(player => player.SensorIndex == x.Item2)
+                .SelectMany(x =>  _players.Where(player => player.SensorIndex == x.Item2)
                         .Select(player =>
                         {
                             player.IsDrinking = !x.Item1;
-                            return Unit.Default;
-                        });
-                });
+                            return _hubProxy.PlayerDrank(new PlayerDrankDto
+                            {
+                                Player = player.Name
+                            }).ToObservable();
+                        })
+                ).Subscribe();
 
             _hubProxy.UpdateScores.ObserveOnDispatcher().Subscribe(x =>
             {

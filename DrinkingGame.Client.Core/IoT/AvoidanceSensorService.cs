@@ -23,8 +23,7 @@ namespace DrinkingGame.Client.Core.IoT
 
             if (_avoidanceSensor != null)
             {
-                Obstacle = Observable.Interval(TimeSpan.FromMilliseconds(500))
-                    .ObserveOnDispatcher()
+                Obstacle = Observable.Interval(TimeSpan.FromMilliseconds(200))
                     .Select(_ => _avoidanceSensor.Read() == GpioPinValue.Low).DistinctUntilChanged();
             }
         }
