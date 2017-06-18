@@ -50,7 +50,7 @@ namespace DrinkingGame.Raspberry
             Locator.CurrentMutable.RegisterConstant(new DrinkingGameHubProxy(Locator.CurrentMutable.GetService<HubConnection>(), "DrinkingGameHub"), typeof(DrinkingGameHubProxy));
             if (Package.Current.Id.Architecture == ProcessorArchitecture.Arm)
             {
-                Locator.CurrentMutable.RegisterConstant(new AvoidanceSensorService(26), typeof(IAvoidanceSensorService));
+                Locator.CurrentMutable.RegisterConstant(new MotionSensorService(26), typeof(IMotionSensorService));
             }
             
 

@@ -10,21 +10,21 @@ using Windows.UI.Xaml;
 
 namespace DrinkingGame.Client.Core.IoT
 {
-    public class AvoidanceSensorService : IAvoidanceSensorService
+    public class MotionSensorService : IMotionSensorService
     {
         private readonly int _pinNumber;
-        private GpioPin _avoidanceSensor;
+        private GpioPin _motionSensor;
         public IObservable<bool> Obstacle { get; }
 
-        public AvoidanceSensorService(int pinNumber)
+        public MotionSensorService(int pinNumber)
         {
             _pinNumber = pinNumber;
             InitGpio();
 
-            if (_avoidanceSensor != null)
+            if (_motionSensor != null)
             {
                 Obstacle = Observable.Interval(TimeSpan.FromMilliseconds(200))
-                    .Select(_ => _avoidanceSensor.Read() == GpioPinValue.Low).DistinctUntilChanged();
+                    .Select(_ => _motionSensor.Read() == GpioPinValue.Low).DistinctUntilChanged();
             }
         }
 
@@ -36,13 +36,13 @@ namespace DrinkingGame.Client.Core.IoT
             {
                 return;
             }
-            _avoidanceSensor = gpio.OpenPin(_pinNumber);
-            _avoidanceSensor.SetDriveMode(GpioPinDriveMode.Input);
+            _motionSensor = gpio.OpenPin(_pinNumber);
+            _motionSensor.SetDriveMode(GpioPinDriveMode.Input);
         }
 
         public void Dispose()
         {
-            _avoidanceSensor.Dispose();
+            _motionSensor.Dispose();
         }
     }
 }

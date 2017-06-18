@@ -21,7 +21,7 @@ namespace DrinkingGame.Client.Core.ViewModels
         private ReactiveList<PlayerViewModel> _players;
         private readonly ObservableAsPropertyHelper<string> _question;
         private readonly ObservableAsPropertyHelper<int> _answer;
-        private readonly IList<IAvoidanceSensorService> _sensorServices;
+        private readonly IList<IMotionSensorService> _sensorServices;
 
         public ReactiveList<PlayerViewModel> Players => _players;
 
@@ -41,10 +41,10 @@ namespace DrinkingGame.Client.Core.ViewModels
             }
         }
 
-        public GameViewModel(DrinkingGameHubProxy hubProxy = null, IList<IAvoidanceSensorService> sensorServices = null)
+        public GameViewModel(DrinkingGameHubProxy hubProxy = null, IList<IMotionSensorService> sensorServices = null)
         {
             _hubProxy = hubProxy ?? Locator.CurrentMutable.GetService<DrinkingGameHubProxy>();
-            _sensorServices = sensorServices ?? Locator.CurrentMutable.GetServices<IAvoidanceSensorService>().ToList();
+            _sensorServices = sensorServices ?? Locator.CurrentMutable.GetServices<IMotionSensorService>().ToList();
 
             _players = new ReactiveList<PlayerViewModel> { ChangeTrackingEnabled = true };
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DrinkingGame.Client.Core.IoT
 {
-    public interface IAvoidanceSensorService : IDisposable
+    public interface IMotionSensorService : IDisposable
     {
         IObservable<bool> Obstacle { get; }
     }
