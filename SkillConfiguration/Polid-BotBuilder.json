@@ -1,0 +1,216 @@
+{
+  "intents": [
+    {
+      "name": "AddPlayer",
+      "samples": [
+        "Füge {PlayerName} zum Spiel hinzu",
+        "{PlayerName} spielt mit",
+        "Spieler {PlayerName} hinzufügen"
+      ],
+      "slots": [
+        {
+          "name": "PlayerName",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": [
+            "{PlayerName} ",
+            "{PlayerName} bitte"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "EndGame",
+      "samples": [
+        "Beende das Spiel",
+        "Spiel beenden"
+      ],
+      "slots": []
+    },
+    {
+      "name": "FinishPlayers",
+      "samples": [
+        "Ich habe alle Spieler hinzugefügt.",
+        "Fertig mit dem Hinzufügen.",
+        "Das war der letzte Spieler.",
+        "Alle Spieler hinzugefügt.",
+        "Das war der letzte."
+      ],
+      "slots": []
+    },
+    {
+      "name": "Guess",
+      "samples": [
+        "{PlayerName} schätzt {GuessedNumber}",
+        "{PlayerName} glaubt es sind {GuessedNumber}"
+      ],
+      "slots": [
+        {
+          "name": "PlayerName",
+          "type": "AMAZON.DE_FIRST_NAME",
+          "samples": [
+            "{PlayerName}"
+          ]
+        },
+        {
+          "name": "GuessedNumber",
+          "type": "AMAZON.NUMBER",
+          "samples": [
+            "{GuessedNumber} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NextRound",
+      "samples": [
+        "Nächste Frage",
+        "Nächste Runde",
+        "Starte neue Runde",
+        "Starte nächste Frage",
+        "Neue Frage",
+        "Neue Runde",
+        "Starte neue Frage",
+        "Wir sind bereit"
+      ],
+      "slots": []
+    },
+    {
+      "name": "StartGame",
+      "samples": [
+        "Starte neues Spiel",
+        "Starte Spiel"
+      ],
+      "slots": []
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-AddPlayer",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Soll ich {PlayerName}  hinzufügen?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-AddPlayer.IntentSlot-PlayerName",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Wie ist der Name des Spielers den du hinzufügen willst?"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-AddPlayer.IntentSlot-PlayerName",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Also {PlayerName} hinzufügen?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-Guess.IntentSlot-PlayerName",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Welcher Spieler schätzt?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-Guess.IntentSlot-GuessedNumber",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Was wird geschätzt?"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-Guess.IntentSlot-GuessedNumber",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Also die Schätzung ist {GuessedNumber}?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "AddPlayer",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-AddPlayer"
+        },
+        "slots": [
+          {
+            "name": "PlayerName",
+            "type": "AMAZON.DE_FIRST_NAME",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicit": "Elicit.Intent-AddPlayer.IntentSlot-PlayerName",
+              "confirm": "Confirm.Intent-AddPlayer.IntentSlot-PlayerName"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Guess",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "PlayerName",
+            "type": "AMAZON.DE_FIRST_NAME",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-Guess.IntentSlot-PlayerName"
+            }
+          },
+          {
+            "name": "GuessedNumber",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": true,
+            "prompts": {
+              "elicit": "Elicit.Intent-Guess.IntentSlot-GuessedNumber",
+              "confirm": "Confirm.Intent-Guess.IntentSlot-GuessedNumber"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

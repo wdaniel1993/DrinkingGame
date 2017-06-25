@@ -1,0 +1,2066 @@
+{
+  "luis_schema_version": "2.1.0",
+  "versionId": "0.1",
+  "name": "Poldi",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "None"
+    },
+    {
+      "name": "poldi.intent.game.addplayer"
+    },
+    {
+      "name": "poldi.intent.game.end"
+    },
+    {
+      "name": "poldi.intent.game.finishplayers"
+    },
+    {
+      "name": "poldi.intent.game.guess"
+    },
+    {
+      "name": "poldi.intent.game.nextround"
+    },
+    {
+      "name": "poldi.intent.game.start"
+    }
+  ],
+  "entities": [
+    {
+      "name": "playerName"
+    }
+  ],
+  "composites": [
+    {
+      "name": "guess",
+      "children": [
+        "number",
+        "playerName"
+      ]
+    }
+  ],
+  "closedLists": [],
+  "bing_entities": [
+    "number"
+  ],
+  "actions": [],
+  "model_features": [
+    {
+      "name": "names",
+      "mode": true,
+      "words": "daniel,david,james,matthew,john,joel,craig,aaron,michael,joshua,robert,andrew,brian,chris,richard,mark,kevin,joseph,stephen,paul,scott,peter,thomas,steve,jason,gary,jim,keith,dave,anthony,mike,dennis,steven,greg,alan,jeff,andy,eric,williams,todd,larry,davis,ryan,danny,bryan,jeffrey,jonathan,bruce,tim,joe,jerry,kim,marcus,brandon,jones,josh,jamie,jeremy,kenny,billy,moore,howard,adams,taylor,harris,tyler,wilson,amy,kelly,kyle,evans,evan,alex,julia,ashley,michelle,miller,smith,sarah,rachel,jesse,courtney,anderson,nicole,julie,lisa,lynn,jennifer,amanda,anne,rebecca,jenny,emily,melissa,christine,brenda,cindy,stephanie,laura,katie,kimberly,sara,karen,ann,angela,nancy,liz,wendy,sharon,beth,diane,denise,patricia,becky,celine,renee,susan,carolyn,cynthia,debbie,shannon,deborah,angie,danielle,elaine,melanie,cathy,cheryl,andrea,lori,vicki,connie,judy,joanne,laurie,helen,joan,kathleen,kathryn,barbara,yvonne,theresa,kathy,tammy,suzanne,teresa,margaret,catherine,joyce,maureen,debra,elizabeth,louise,ruth,katherine,mary,caroline,francis,nicholas,lydia,doris,pauline,andrews,carla,william,marie,stuart,christopher,lawrence,robinson,harrison,charles,george,henry,martin,lewis,thompson,morris,harvey,gordon,gregory,spencer,ellis,douglas,johnson,wright,clark,curtis,bennett,johnston,mitchell,campbell,donald,powell,morgan,nelson,murphy,carter,parker,webb,kennedy,palmer,patterson,roberts,glenn,casey,barry,sullivan,lee,doug,richardson,collins,jackson,stevens,peterson,carroll,matthews,madison,colin,phil,greene,gilbert,franklin,simon,warren,montgomery,jefferson,vernon,charlotte,patrick,hamilton,clayton,marion,owen,chester",
+      "activated": true
+    },
+    {
+      "name": "numbers",
+      "mode": true,
+      "words": "7,10,9,8,27,6,5,11,4,13,1,2,3,15,12,14,16,17,18,19,21,23,28,20,24,22,25,30,26,29,31,33,32,35,36,37,34,38,39,42,43,49,44,45,40,55,41,47,46,53,65,52,56,59,58,54,57,48,70,62,63,61,66,67,71,68,73,79,74,76,77,78,81,69,82,83,84,72,87,86,89,88,85,91,92,94,93,119,75,117,97,96,113,109,107,118,103,124,127,116,126,122,114,111,104,106,112,105,108,129,138,134,121,102,131,132,136,141,115,142,151,143,137,152,162,146,154,130,148,164,123,156,133,158,153,166,174,172,161,157,171,163,184,147,159,167,178,139,186,188,145,181,176,149,155,177,173,169,168,183,193,189,191,179,197,198,195,196,165,194,187,185,144,190,182,238,236,237,257,246,227,258,221,232,211,290,235,245,265,285,242,244,234,226,224,228,241,268,222,233,262,231,274,218,217,213,254,214,251,216,229,252,219,209,208,204,203,248,276,212,215,253,239,205,207,309,267,269,243,281,261,294,282,334,321,286,259,278,292,291,273,296,312,331,352,424,344,284,266,272,339,346,329,332,324,326,464,342,354,353,362,368,341,60,135,51,297,279,298,283,249,277,287,271,300,293,288,295,247,263,289,255,223,479,359,386,275,280,299,230,270,260,319,225,315,210,340,305,415,220,240,370,330,310,345,410,322,314,408,313,307,335,336,530,317,418,318,412,414,434,423,306,413,432,337,421,426,416,417,402,406,435,361,438,428,436,446,433,431,422,439,461,453,474,466,437,472,452,482,394,481,462,459,382,393,467,463,477,471,487,397,388,391,378,387,483,491,493,476,473,489,492,497,498,447,494,537,557,584,539,496,558,593,548,547,534,536,591,596,526,594,542,582,578,523,544,554,566,543,546,553,577,551,568,564,592,531,571,583,552,572,569,579,565,637,589,598,587,629,567,668,581,643,563,573,627,588,663,681,684,654,659,673,677,657,628,638,621,648,639,658,653,692,674,683,632,633,652,644,656,664,655,671,691,694,672,736,693,682,685,698,669,665,676,679,697,696,689,746,764,743,738,758,783,782,687,739,794,792,723,759,779,726,793,798,791,784,788,769,753,742,741,756,766,752,789,771,823,761,842,748,778,751,774,762,796,839,897,797,838,829,884,861,733,869,821,827,879,882,889,892,887,878,872,851,824,819,841,844,833,837,876,857,834,873,826,832,868,891,862,852,923,886,853,874,885,896,943,835,859,926,855,867,854,898,938,894,849,866,865,890,881,871,963,942,948,967,953,977,934,927,958,969,983,994,961,946,957,947,962,966,981,964,932,984,974,976,986,982,987,971,968,992,956,955,979,985,952,959,933,989,921,988,936,913,937,931,951,917,831,919,903,915,945,916,907,814,905,845,807,922,781,856,929,817,813,818,609,806,816,812,731,717,843,732,804,724,716,734,785,662,715,618,706,713,615,719,651,641,541,712,614,617,519,646,517,631,623,605,603,516,611,607,518,513,616,608,515,507,574,612,521,522,503,506,524,604,606,601,705,508,502,505,484,562,602,708,514,803,610,704,504,702,509,805,902,714,709,801,624,707,701,619,904,407,809,815,721,561,910,901,810,822,772,773,811,765,825,828,908,863,858,661,678,830,860,864,847,786,559,754,836,763,735,725,949,478,744,745,970,790,740,730,941,954,728,780,909,928,912,755,635,690,645,670,760,590,595,688,630,585,545,625,535,695,490,575,549,525,570,520,475,495,449,620,465,469,390,385,445,560,470,460,430,580,455,485,456,372,392,355,380,429,444,381,389,371,374,468,373,367,369,441,379,348,376,396,377,363,398,364,349,358,366,327,356,343,347,338,383,351,328,427,442,395,454,458,409,357,323,399,443,308,451,488,457,448,303,556,405,302,206,499,199,699,301,202,201,311,404,304,316,597,403,510",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "start game",
+      "intent": "poldi.intent.game.start",
+      "entities": []
+    },
+    {
+      "text": "finish game",
+      "intent": "poldi.intent.game.end",
+      "entities": []
+    },
+    {
+      "text": "end game",
+      "intent": "poldi.intent.game.end",
+      "entities": []
+    },
+    {
+      "text": "start a new game",
+      "intent": "poldi.intent.game.start",
+      "entities": []
+    },
+    {
+      "text": "add lisa",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "next question",
+      "intent": "poldi.intent.game.nextround",
+      "entities": []
+    },
+    {
+      "text": "next round",
+      "intent": "poldi.intent.game.nextround",
+      "entities": []
+    },
+    {
+      "text": "add player daniel",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "add daniel",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 4,
+          "endPos": 9
+        }
+      ]
+    },
+    {
+      "text": "add player natalie",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "add player lisa",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "add player gerhard",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "add player max",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "add player markus",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "add player ralph",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "add player thorsten",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "add player dominik",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "start guessing",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "completed adding players",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "finished adding players",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "add player kathi",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "8 player selen.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "add player conny",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "8 player daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "add user lisa.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "complete edit players.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "complete edition players.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "complete editing players.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "start game.",
+      "intent": "poldi.intent.game.start",
+      "entities": []
+    },
+    {
+      "text": "add user conny",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "x player lisa.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "add user daniel",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "add user daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "8 player lisa.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "add player alexandra",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 19
+        }
+      ]
+    },
+    {
+      "text": "add dominik",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 4,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "add natalie",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 4,
+          "endPos": 10
+        }
+      ]
+    },
+    {
+      "text": "add alexandra",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 4,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "daniel guesses 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "conny answers eight",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 4
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 18
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "daniel guess seven",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniels guess is 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 11",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 18
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "lisa estimates 9",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "8 player marcus.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "daniel gjkejrmamern dfaerkjre 7",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "dfadkfkjfa dfakjje dfajfkejr",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "complete adding player",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "complete adding players",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "complete adding players.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "daniel gas 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 11,
+          "endPos": 11
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "8 user daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 7,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "daniel answers 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel jesous 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "complete adding games.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "daniel estimates 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "edusa daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 6,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "add player 1",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "add user marcus",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "player add conny",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "ed player daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 10,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "marcus estimates 3.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus kisses 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus kisses 3.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 5",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "markcus.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "hey marcus.",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "edusat daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 7,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "add user marcus.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 14
+        }
+      ]
+    },
+    {
+      "text": "add player marcus.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "add user microsoft.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 17
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 300",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus estimates 3",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel answers 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "mackris guess is 3.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "daniel guess eight",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus kisses 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "start new ame",
+      "intent": "poldi.intent.game.start",
+      "entities": []
+    },
+    {
+      "text": "add player daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "complete heading players.",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "add player marcus",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "a user daniel.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 7,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "player add daniel",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 11,
+          "endPos": 16
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guesses 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus estimate 3.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel kisses 3.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "conny estimates 6",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 4
+        },
+        {
+          "entity": "guess",
+          "startPos": 16,
+          "endPos": 16
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "thorsten guessed 120",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "daniel guesses 100",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guess is 150.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guessed 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guessed 60",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "lisa gases 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "guess",
+          "startPos": 11,
+          "endPos": 11
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 9.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "thorsten guesses 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "thorsten guessed 123",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 7
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "marcus estimated 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "complete adding users",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "complete adding games",
+      "intent": "poldi.intent.game.finishplayers",
+      "entities": []
+    },
+    {
+      "text": "marcus estimates 8",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 101",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 140",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 5",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus kiss 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 12,
+          "endPos": 12
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guesses 11",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guess 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimated 150.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel kisses 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus estimated 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guesses 5",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 312",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guest 150.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guesses 3",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guessed 4",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel gets 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 12,
+          "endPos": 12
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guessed 5",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "add user kim",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "8 player patrick.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 15
+        }
+      ]
+    },
+    {
+      "text": "daniels gases 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "patrick estimates 114.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 6
+        },
+        {
+          "entity": "guess",
+          "startPos": 18,
+          "endPos": 20
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "marcus estimated 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 17
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guest 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "lisa guest 5.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "guess",
+          "startPos": 11,
+          "endPos": 11
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "marcus estimates 70",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 18
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel guessed 7",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 15
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "8 player marks.",
+      "intent": "poldi.intent.game.addplayer",
+      "entities": [
+        {
+          "entity": "playerName",
+          "startPos": 9,
+          "endPos": 13
+        }
+      ]
+    },
+    {
+      "text": "daniel js 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 10,
+          "endPos": 10
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 123",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "marcus guest 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 13,
+          "endPos": 13
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "daniel estimates 100",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 17,
+          "endPos": 19
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "lisa guess is 7.",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 3
+        },
+        {
+          "entity": "guess",
+          "startPos": 14,
+          "endPos": 14
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "marcus guesses 60",
+      "intent": "poldi.intent.game.guess",
+      "entities": [
+        {
+          "entity": "guess",
+          "startPos": 0,
+          "endPos": 5
+        },
+        {
+          "entity": "guess",
+          "startPos": 15,
+          "endPos": 16
+        },
+        {
+          "entity": "playerName",
+          "startPos": 0,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "close game",
+      "intent": "poldi.intent.game.end",
+      "entities": []
+    },
+    {
+      "text": "terminate game",
+      "intent": "poldi.intent.game.end",
+      "entities": []
+    },
+    {
+      "text": "start next round",
+      "intent": "poldi.intent.game.nextround",
+      "entities": []
+    },
+    {
+      "text": "new round",
+      "intent": "poldi.intent.game.nextround",
+      "entities": []
+    },
+    {
+      "text": "start next question",
+      "intent": "poldi.intent.game.nextround",
+      "entities": []
+    }
+  ]
+}
